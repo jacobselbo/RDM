@@ -9,7 +9,7 @@
 </div>
 
 <div align="center">
-	RDM is a small and light weight dependency manager that is setup like [NPM](https://github.com/npm/cli).
+	RDM is a small and light weight dependency manager that is setup like <a href="https://github.com/npm/cli"> NPM </a>.
 </div>
 
 <div>&nbsp;</div>
