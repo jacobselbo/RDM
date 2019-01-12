@@ -19,6 +19,7 @@
 1. [Examples](#examples)
 2. [Documentation](#documentation)
 3. [Download](#download)
+4. [Installing Packages][#installing-packages]
 
 ## Examples
 
@@ -56,7 +57,7 @@ There are mutiple ways of downloading RDM and installing packages.
 
 This is probably the best method of downloading since you will have a constantly updated package.
 
-1. Go to [Package](https://www.roblox.com/library/2737448764/RDM-Roblox-Dependency-Manager)
+1. Head to [Package](https://www.roblox.com/library/2737448764/RDM-Roblox-Dependency-Manager)
 2. Add to inventory
 3. Go to toolbox and head to `My Packages` 
 4. Add `RDM - Roblox Dependency Manager` to `ServerScriptService`
