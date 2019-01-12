@@ -19,7 +19,7 @@
 1. [Examples](#examples)
 2. [Documentation](#documentation)
 3. [Download](#download)
-4. [Installing Packages][#installing-packages]
+4. [Installing Packages](#installing-packages)
 
 ## Examples
 
