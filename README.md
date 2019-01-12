@@ -17,7 +17,7 @@
 ## Index
 
 1. [Examples](#examples)
-2. [Documentation)(#documentation)
+2. [Documentation](#documentation)
 3. [Download](#download)
 
 ## Examples
@@ -63,10 +63,9 @@ This is probably the best method of downloading since you will have a constantly
 
 **Download through Github**
 
-Run 
+Run in the command bar.
 ```lua
 local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/Install.lua"))()
 ```
-in the command bar.
 
 # Alot of this is in a Todo phase so wait a bit
