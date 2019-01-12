@@ -38,7 +38,7 @@ local stringUtil = RDM:Import("String")
 players.PlayerAdded:Connect(function(player)
 	player.Chatted:connect(function(message)
 		if (stringUtil:Starts(prefix)) then
-			local message = string.sub(message, 1)
+			local message = string.sub(message, prefix:len())
 			local arguments = stringUtil:Split(message, dem)
 			
 			if (arguments[0] == "kill") then
