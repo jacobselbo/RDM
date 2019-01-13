@@ -64,7 +64,7 @@ This is probably the best method of downloading since you will have a constantly
 
 **Download through Github**
 
-Run in the command bar. If you want RDM to not br placed in `ServerScriptService` then where it calls the loadstring put thr destination you want
+Run in the command bar. If you want RDM to not be placed in `ServerScriptService` then where it calls the loadstring put the destination you want.
 
 *Normally*
 ```lua
