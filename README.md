@@ -61,6 +61,7 @@ This is probably the best method of downloading since you will have a constantly
 2. Add to inventory
 3. Go to toolbox and head to `My Packages` 
 4. Add `RDM - Roblox Dependency Manager` to your wanted location
+
 **Download through Github**
 
 Run in the command bar. If you want RDM to not br placed in `ServerScriptService` then where it calls the loadstring put thr destination you want
