@@ -51,7 +51,7 @@ end)
 
 ## Download
 
-There are mutiple ways of downloading RDM and installing packages.
+
 
 **Download through Packages**
 
@@ -60,13 +60,15 @@ This is probably the best method of downloading since you will have a constantly
 1. Head to [RDM Package](https://www.roblox.com/library/2737448764/RDM-Roblox-Dependency-Manager)
 2. Add to inventory
 3. Go to toolbox and head to `My Packages` 
-4. Add `RDM - Roblox Dependency Manager` to `ServerScriptService`
-
+4. Add `RDM - Roblox Dependency Manager` to your wanted location
 **Download through Github**
 
 Run in the command bar.
 ```lua
 local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/Install.lua"))()
 ```
+
+## Installing Packages
+
 
 # Alot of this is in a Todo phase so wait a bit
