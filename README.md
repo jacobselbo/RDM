@@ -9,7 +9,7 @@
 </div>
 
 <div align="center">
-	RDM is a small and light weight dependency manager that is setup like <a href="https://github.com/npm/cli"> NPM </a>.
+	RDM is a small and light weight dependency manager that is setup like <a href="https://github.com/npm/cli">NPM</a>.
 </div>
 
 <div>&nbsp;</div>
@@ -41,8 +41,8 @@ players.PlayerAdded:Connect(function(player)
 			local message = string.sub(message, prefix:len())
 			local arguments = stringUtil:Split(message, dem)
 			
-			if (arguments[0] == "kill") then
-				players[arguments[1]].Character:BreakJoints()
+			if (arguments[1] == "kill") then
+				players[arguments[2]].Character:BreakJoints()
 			end
 		end
 	end)
@@ -63,9 +63,15 @@ This is probably the best method of downloading since you will have a constantly
 4. Add `RDM - Roblox Dependency Manager` to your wanted location
 **Download through Github**
 
-Run in the command bar.
+Run in the command bar. If you want RDM to not br placed in `ServerScriptService` then where it calls the loadstring put thr destination you want
+
+*Normally*
 ```lua
 local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/Install.lua"))()
+```
+*Edited destination*
+```lua
+local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/Install.lua"))(game:GetService("ServerStorage"))
 ```
 
 ## Installing Packages
