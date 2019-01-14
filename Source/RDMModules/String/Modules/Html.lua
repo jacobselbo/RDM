@@ -1,7 +1,7 @@
 return {
 	["Init"] = function(baseClass, prereqs, RDM)
 		-- [[ Constants ]] --
-		
+
 		local htmlEntities = {
 			['&Tab;'] = ' ',
 			['&NewLine;'] = '\n',
@@ -2273,7 +2273,7 @@ return {
 			['&#8364;'] = '€',
 			['&#8482;'] = '™'
 		}
-		
+
 		-- [[ Class ]] --
 		return baseClass:Extend(
 			{
@@ -2283,6 +2283,6 @@ return {
 			}
 		)
 	end,
-	
+
 	["Prerequisites"] = { }
 }

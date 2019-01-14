@@ -7,28 +7,28 @@ return {
 			{
 				["Get"] = function(setting)
 					local RDMSetting = RDMSettings[setting]
-					
-					if (RDMSetting == nil) then
-						return error("Invalid setting given. Got: " .. setting)	
-					end
-					
-					return RDMSetting
-				end,
-				
-				["Set"] = function(setting, newValue)
-					local RDMSetting = RDMSettings[setting]
-					
+
 					if (RDMSetting == nil) then
 						return error("Invalid setting given. Got: " .. setting)
-					end 
-					
+					end
+
+					return RDMSetting
+				end,
+
+				["Set"] = function(setting, newValue)
+					local RDMSetting = RDMSettings[setting]
+
+					if (RDMSetting == nil) then
+						return error("Invalid setting given. Got: " .. setting)
+					end
+
 					RDMSettings[setting] = newValue
-					
+
 					return true
 				end
 			}
 		)
 	end,
-	
+
 	["Prerequisites"] = { }
 }

@@ -9,6 +9,6 @@ return {
 			}  -- todo test dependencies
 		)
 	end,
-	
+
 	["Prerequisites"] = { }
 }

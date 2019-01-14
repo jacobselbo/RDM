@@ -8,13 +8,13 @@ return class:Extend({
 	["Get"] = function(self, className, RDM)
 		if not cache[className] then
 			local reqFile = nil
-			
+
 			for _, file in pairs(modulesFolder:GetDescendants()) do
 				if (file.Name == className) then
 					reqFile = file
 				end
 			end
-			
+
 			if (reqFile == nil) then
 				error("Couldn't find module: " .. className)
 			end
