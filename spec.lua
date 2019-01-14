@@ -7,7 +7,7 @@
 -- If you add any dependencies, add them to this table so they'll be loaded!
 local loadModules = {
 	["Source"] = "Source",
-	["RDMTests"] = "RDMTests"
+	["RDMTests"] = "RDMTests",
 	["TestEZ"] = "Modules/TestEZ/lib"
 }
 
