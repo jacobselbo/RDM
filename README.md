@@ -6,6 +6,9 @@
 	<a href="https://github.com/froghopperjacob/RDM/tree/master/LICENSE">
 		<img src="https://img.shields.io/badge/License-Apache%202.0-lightgrey.svg" alt="Lisence" />
 	</a>
+	<a href="https://travis-ci.org/froghopperjacob/RDM">
+		<img src="https://travis-ci.org/froghopperjacob/RDM.svg?branch=master" alt="Travis" />
+	</a>
 </div>
 
 <div align="center">
