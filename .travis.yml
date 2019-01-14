@@ -23,7 +23,7 @@ install:
   - luarocks install luacheck
 
 script:
-  - luacheck lib Examples Source
+  - luacheck Examples Source
   - lua -lluacov bin/spec.lua
 
 after_success:
