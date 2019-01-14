@@ -20,6 +20,8 @@
 2. [Documentation](#documentation)
 3. [Download](#download)
 4. [Installing Packages](#installing-packages)
+5. [Creating Packages](#creating-packages)
+6. [How to Contribute](#how-to-contribute)
 
 ## Examples
 
@@ -36,7 +38,7 @@ local dem = "/"
 local stringUtil = RDM:Import("String")
 
 players.PlayerAdded:Connect(function(player)
-	player.Chatted:connect(function(message)
+	player.Chatted:Connect(function(message)
 		if (stringUtil:Starts(prefix)) then
 			local message = string.sub(message, prefix:len())
 			local arguments = stringUtil:Split(message, dem)
@@ -76,6 +78,16 @@ local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:Get
 ```
 
 ## Installing Packages
+
+There are two methods of installing packages. The most recommended way of installing packages is locally and not at runtime.
+
+**Installing Packages Locally**
+
+There is also two methods of installing packages.
+
+*Installing through script*
+
+
 
 
 # Alot of this is in a Todo phase so wait a bit
