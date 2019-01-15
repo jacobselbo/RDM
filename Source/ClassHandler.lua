@@ -19,7 +19,7 @@ return class:Extend({
 				error("Couldn't find module: " .. className)
 			end
 
-			if (reqFile.classname ~= "ModuleScript") then
+			if (reqFile.ClassName ~= "ModuleScript") then
 				error("Invalid module found: " .. className)
 			end
 
