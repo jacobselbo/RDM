@@ -6,7 +6,7 @@ return function()
 		it("should give true for Test", function()
 			local test = testModule:Test()
 
-			except(test).to.equal(true)
+			expect(test).to.equal(true)
 		end)
 	end)
 end
