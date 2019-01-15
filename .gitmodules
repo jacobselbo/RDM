@@ -1,6 +1,5 @@
-[submodule "Modules/TestEZ"]
-	path = Modules/TestEZ
-	url = https://github.com/Roblox/testez/
 [submodule "Modules/Lemur"]
 	path = Modules/Lemur
 	url = https://github.com/LPGhatguy/lemur
+[submodule "Modules/TestEZ"]
+	url = https://github.com/Roblox/testez/tree/5acef9659a177d446800e986b60e4613a35eb418

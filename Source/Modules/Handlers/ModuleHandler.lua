@@ -84,7 +84,7 @@ return {
 
 				["GetByID"] = function(self, moduleID)
 					local origModuleID = moduleID
-					local mod = nil
+					local mod
 
 					if (type(moduleID) == "string") then
 						moduleID = string.sub(moduleID, 4)
