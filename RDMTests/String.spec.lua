@@ -27,7 +27,7 @@ return function()
 		it(string.format(shouldGive, "IsUpper"), function()
 			local boolean = stringUtil:IsUpper("TEST")
 
-			expect(boolean).to.eqaul(true)
+			expect(boolean).to.equal(true)
 		end)
 
 		it(string.format(shouldGive, "ToBoolean"), function()
@@ -51,13 +51,13 @@ return function()
 		end)
 
 		it(string.format(shouldBe, "Split"), function()
-			local splitTotal = #stringUtil:Split("test-test-test")
+			local splitTotal = #stringUtil:Split("test-test-test", "-")
 
 			expect(splitTotal).to.equal(3)
 		end)
 
 		it(string.format(shouldBe, "Count"), function()
-			local countTotal = stringUtil:Count("hihihihi")
+			local countTotal = stringUtil:Count("hihihihi", "hi")
 
 			expect(countTotal).to.equal(4)
 		end)
