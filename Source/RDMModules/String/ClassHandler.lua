@@ -28,7 +28,7 @@ return class:Extend({
 
 			if (r.Prerequisites) then
 				for _, prereq in pairs(r.Prerequisites) do
-					preReqs[prereq] = self:Get(prereq, RDM) -- This could cause a stack overflow if two classes require eachother. However, if you do it *properly*, and don't cycle it like I will at some point; you'll be fine.
+					preReqs[prereq] = self:Get(prereq, RDM)
 				end
 			end
 

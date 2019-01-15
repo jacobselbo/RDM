@@ -18,7 +18,7 @@ return {
 		}
 
 		local RDMModulesFolder = settingsHandler.Get("RDMModulesFolder")
-		local RDMPackage = settingsHandler.Get("RDMPackageModule")
+		-- local RDMPackage = settingsHandler.Get("RDMPackageModule") Todo this later
 		local intergratedRDMModules = script.Parent.Parent.Parent:WaitForChild("RDMModules")
 
 		local localModules = settingsHandler.Get("LocalModules")
@@ -43,7 +43,9 @@ return {
 				["CheckHttp"] = function(self)
 					if (not localModules) then
 						if (not httpService.HttpEnabled) then
-							error("Http hasn't been enabled for RDM. \nIf you want to use Local Modules add LocalModules to true in the setup. If not then put game:GetService('HttpService').HttpEnabled = true then play again")
+							error("Http hasn't been enabled for RDM. " ..
+								"\nIf you want to use Local Modules add LocalModules to true in the setup. " ..
+								"If not then put game:GetService('HttpService').HttpEnabled = true then play again")
 
 							return false
 						else
@@ -57,10 +59,11 @@ return {
 				-- [[ Gets ]] --
 
 				["GetByGithub"] = function(self, moduleStr)
-					if (self:CheckHttp()) then
+					--[[ if (self:CheckHttp()) then
 
 					end
-					-- todo
+
+					TODO ]]
 				end,
 
 				["GetByFile"] = function(self, moduleStr)
@@ -91,9 +94,6 @@ return {
 					if (moduleID == nil) then
 						return error("Invalid ID given. Got - " .. origModuleID .. " Excepted - id:12381231")
 					end
-
-
-					local module = nil
 
 					local tPS, tPM = pcall(function()
 						return insertService:LoadAssetVersion(moduleID)
@@ -202,8 +202,8 @@ return {
 
 				-- [[ Dependencies ]] --
 
-				["GetLoadedDependencies"]  = function(self, project)
-					local project = loadedCache[project]
+				["GetLoadedDependencies"]  = function(self, projectName)
+					local project = loadedCache[projectName]
 
 					if (project == nil) then
 						return error("Invalid project name given or loaded.")
@@ -223,8 +223,8 @@ return {
 					return loadedDependencies
 				end,
 
-				["GetLoadedOptionalDependencies"] = function(self, project)
-					local project = loadedCache[project]
+				["GetLoadedOptionalDependencies"] = function(self, projectName)
+					local project = loadedCache[projectName]
 
 					if (project == nil) then
 						return error("Invalid project name given or loaded.")

@@ -55,10 +55,12 @@ return {
 
 				-- [[ Setup ]] --
 
-				["SetProjectArea"] = function(self, project)
-					if (project.ClassName ~= "ModuleScript" and project.ClassName ~= "Script") then return error("Invalid script given.") end
+				["SetProjectArea"] = function(self, projectInstance)
+					if (project.ClassName ~= "ModuleScript" and project.ClassName ~= "Script") then 
+						return error("Invalid script given.") 
+					end
 
-					local project = project.Parent
+					local project = projectInstance.Parent
 
 					if (project:FindFirstChild("RDMModules") == nil or
 						project:FindFirstChild("Package") == nil) then return error("Invalid project area given.") end

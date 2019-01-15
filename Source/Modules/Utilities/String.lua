@@ -18,8 +18,8 @@ return {
 					return str:gsub(a, b)
 				end,
 
-				["Split"] = function(str, sep)
-					local sep, fields = sep or ":", {}
+				["Split"] = function(str, sepPossibly)
+					local sep, fields = sepPossibly or ":", {}
 					local pattern = string.format("([^%s]+)", sep)
 
 					str:gsub(pattern, function(c) fields[#fields + 1] = c end)

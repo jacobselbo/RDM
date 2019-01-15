@@ -1,4 +1,4 @@
-local class = {	
+local class = {
 	["Name"] = "BaseClass"
 }
 
@@ -40,7 +40,7 @@ class.Lock = function(self)
 			return self[k]
 		end,
 
-		__newindex = function() 
+		__newindex = function()
 			return error("New indexes are locked for this class.")
 		end,
 

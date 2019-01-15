@@ -70,14 +70,6 @@ return {
 					return tab[ math.random(#tab) ]
 				end,
 
-				["Reverse"] = function(tab)
-					local rtab = { }
-
-					for i, value in pairs(tab) do
-						table.insert()(rtab, tab[i])
-					end
-				end,
-
 				["StripStatus"] = function(tab)
 					tab["status"] = nil
 

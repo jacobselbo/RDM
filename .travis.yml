@@ -24,7 +24,7 @@ install:
 
 script:
   - luacheck Examples Source
-  - lua -lluacov bin/spec.lua
+  - lua -lluacov spec.lua
 
 after_success:
   - luacov-coveralls -e $TRAVIS_BUILD_DIR/lua_install

@@ -14,11 +14,13 @@ return {
 					end
 
 					if (type(str) ~= "string" or type(start) ~= "string") then
-						return error("Invalid string or start given. Given - " .. type(str) .. "/" .. type(start) .. " Excepted - string/string")
+						return error("Invalid string or start given. Given - " .. 
+							type(str) .. "/" .. type(start) .. " Excepted - string/string")
 					end
 
 					if (str == "" or start == "") then
-						return error("Invalid string or start given. Given - " .. str .. "/" .. start .. " Excepted - $test/$")
+						return error("Invalid string or start given. Given - " .. 
+							str .. "/" .. start .. " Excepted - $test/$")
 					end
 
 					return string.sub(str, 1, string.len(start)) == start
@@ -30,7 +32,8 @@ return {
 					end
 
 					if (type(str) ~= "string" or type(ends) ~= "string") then
-						return error("Invalid string or ends given. Given - " .. type(str) .. "/" .. type(ends) .. " Excepted - string/string")
+						return error("Invalid string or ends given. Given - " .. 
+							type(str) .. "/" .. type(ends) .. " Excepted - string/string")
 					end
 
 					if (str == "") then
@@ -58,17 +61,18 @@ return {
 					end
 
 					if (type(fields) ~= "table" or type(join) ~= "string") then
-						return error("Invalid fields or join given. Given - " .. type(fields) .. "/" .. type(join) .. " Excepted - table/string")
+						return error("Invalid fields or join given. Given - " ..
+							type(fields) .. "/" .. type(join) .. " Excepted - table/string")
 					end
 
 					if (#fields == 0) then
 						return error("No strings in fields.")
 					end
 
-					local join, finalString = join or "", ""
+					local realJoin, finalString = join or ", ", ""
 
 					for index, char in pairs(fields) do
-						local joinN = join
+						local joinN = realJoin
 
 						if (index == #fields) then joinN = "" end
 
@@ -83,13 +87,14 @@ return {
 						return error("Use : to call Join instead of .")
 					end
 
-					local sep = sep or ":"
+					local realSeperator = sep or ":"
 
-					if (type(str) ~= "string" or type(sep) ~= "string") then
-						return error("Invalid string or seperator given. Given - " .. type(str) .. "/" .. type(sep) .. " Excepted - string/string")
+					if (type(str) ~= "string" or type(realSeperator) ~= "string") then
+						return error("Invalid string or seperator given. Given - " .. 
+							type(str) .. "/" .. type(realSeperator) .. " Excepted - string/string")
 					end
 
-					local pattern, fields = string.format(splitFormat, sep), {
+					local pattern, fields = string.format(splitFormat, realSeperator), {
 						["Join"] = self["Join"] -- Todo add more functions
 					}
 
@@ -112,7 +117,8 @@ return {
 					end
 
 					if (type(str) ~= "string" or type(substring) ~= "string") then
-						return error("Invalid string or substring given. Given - " .. type(str) .. "/" .. type(substring) .. " Excepted - string/string")
+						return error("Invalid string or substring given. Given - " .. 
+							type(str) .. "/" .. type(substring) .. " Excepted - string/string")
 					end
 
 					if (str == "" or substring == "") then
@@ -174,14 +180,14 @@ return {
 						return error("Invalid string given. Given - " .. type(str) .. " Excepted - string")
 					end
 
-					local str = string.lower(str)
+					local lowerStr = string.lower(str)
 
-					return 	str == 'true' or
-							str == 'on' or
-							str == 1 or
-							str == '1' or
-							str == 'yes' or
-							str == true
+					return 	lowerStr == 'true' or
+							lowerStr == 'on' or
+							lowerStr == 1 or
+							lowerStr == '1' or
+							lowerStr == 'yes' or
+							lowerStr == true
 				end
 			} -- todo more stuff
 		)
