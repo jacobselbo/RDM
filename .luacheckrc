@@ -21,7 +21,7 @@ stds.roblox = {
 	}
 }
 
-stds.testez = {
+stds.TestEZ = {
 	read_globals = {
 		"describe",
 		"it", "itFOCUS", "itSKIP",
