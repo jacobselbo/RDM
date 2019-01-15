@@ -84,6 +84,7 @@ return {
 
 				["GetByID"] = function(self, moduleID)
 					local origModuleID = moduleID
+					local mod = nil
 
 					if (type(moduleID) == "string") then
 						moduleID = string.sub(moduleID, 4)
@@ -111,6 +112,10 @@ return {
 						mod = tMM
 					else
 						mod = tPM
+					end
+
+					if (mod == nil) then
+						return error("A unexcepted error has occured.")
 					end
 
 					mod.Parent = RDMModulesFolder

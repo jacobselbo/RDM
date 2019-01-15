@@ -31,7 +31,7 @@ for _, mod in ipairs(loadModules) do
 	container.Name = mod[1]
 	container.Parent = Root
 
-	print("[Spec.lua] Adding " .. mod[1] .. " to Root. Container: " .. container)
+	print("[Spec.lua] Adding " .. mod[1] .. " to Root. Container full path: " .. container:GetFullPath())
 end
 
 -- Load TestEZ and run our tests
