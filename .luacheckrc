@@ -35,7 +35,8 @@ ignore = {
 	"421", -- shadowing local variable
 	"422", -- shadowing argument
 	"431", -- shadowing upvalue
-	"432" -- shadowing upvalue argument
+	"432", -- shadowing upvalue argument
+	"231", -- variable is accessed but never set
 }
 
 std = "lua51+roblox"
