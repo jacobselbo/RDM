@@ -51,7 +51,7 @@ return function()
 		end)
 
 		it(string.format(shouldBe, "Split"), function()
-			local #splitTotal = stringUtil:Split("test-test-test")
+			local splitTotal = #stringUtil:Split("test-test-test")
 
 			except(splitTotal).to.equal(3)
 		end)
