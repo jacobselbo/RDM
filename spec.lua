@@ -6,9 +6,9 @@
 
 -- If you add any dependencies, add them to this table so they'll be loaded!
 local loadModules = {
-	["Source"] = "Source",
-	["RDMTests"] = "RDMTests",
-	["TestEZ"] = "Modules/TestEZ/lib"
+	{ "Source", "Source" },
+	{ "RDMTests", "RDMTests"},
+	{ "TestEZ", "Modules/TestEZ/lib" }
 }
 
 -- This makes sure we can load Lemur and other libraries that depend on init.lua
@@ -25,11 +25,13 @@ local Root = lemur.Instance.new("Folder")
 Root.Name = "Root"
 
 -- Load all of the modules specified above
-for name, path in ipairs(loadModules) do
-	local container = habitat:loadFromFs(path)
+for _, mod in ipairs(loadModules) do
+	local container = habitat:loadFromFs(mod[2])
 
-	container.Name = name
+	container.Name = mod[1]
 	container.Parent = Root
+
+	print("[Spec.lua] Adding " .. mod[1] .. " to Root. Container: " .. container)
 end
 
 -- Load TestEZ and run our tests

@@ -14,12 +14,12 @@ return {
 					end
 
 					if (type(str) ~= "string" or type(start) ~= "string") then
-						return error("Invalid string or start given. Given - " .. 
+						return error("Invalid string or start given. Given - " ..
 							type(str) .. "/" .. type(start) .. " Excepted - string/string")
 					end
 
 					if (str == "" or start == "") then
-						return error("Invalid string or start given. Given - " .. 
+						return error("Invalid string or start given. Given - " ..
 							str .. "/" .. start .. " Excepted - $test/$")
 					end
 
@@ -32,7 +32,7 @@ return {
 					end
 
 					if (type(str) ~= "string" or type(ends) ~= "string") then
-						return error("Invalid string or ends given. Given - " .. 
+						return error("Invalid string or ends given. Given - " ..
 							type(str) .. "/" .. type(ends) .. " Excepted - string/string")
 					end
 
@@ -90,7 +90,7 @@ return {
 					local realSeperator = sep or ":"
 
 					if (type(str) ~= "string" or type(realSeperator) ~= "string") then
-						return error("Invalid string or seperator given. Given - " .. 
+						return error("Invalid string or seperator given. Given - " ..
 							type(str) .. "/" .. type(realSeperator) .. " Excepted - string/string")
 					end
 
@@ -117,7 +117,7 @@ return {
 					end
 
 					if (type(str) ~= "string" or type(substring) ~= "string") then
-						return error("Invalid string or substring given. Given - " .. 
+						return error("Invalid string or substring given. Given - " ..
 							type(str) .. "/" .. type(substring) .. " Excepted - string/string")
 					end
 

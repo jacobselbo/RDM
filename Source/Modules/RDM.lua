@@ -56,8 +56,8 @@ return {
 				-- [[ Setup ]] --
 
 				["SetProjectArea"] = function(self, projectInstance)
-					if (project.ClassName ~= "ModuleScript" and project.ClassName ~= "Script") then 
-						return error("Invalid script given.") 
+					if (projectInstance.ClassName ~= "ModuleScript" and projectInstance.ClassName ~= "Script") then
+						return error("Invalid script given.")
 					end
 
 					local project = projectInstance.Parent

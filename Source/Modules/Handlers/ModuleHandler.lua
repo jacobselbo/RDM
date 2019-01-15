@@ -108,14 +108,14 @@ return {
 							return error("Invalid ID given.")
 						end
 
-						module = tMM
+						mod = tMM
 					else
-						module = tPM
+						mod = tPM
 					end
 
-					module.Parent = RDMModulesFolder
+					mod.Parent = RDMModulesFolder
 
-					return module
+					return mod
 				end,
 
 				["Get"] = function(self, moduleStr)
