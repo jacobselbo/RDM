@@ -30,6 +30,8 @@ for name, path in ipairs(loadModules) do
 
 	container.Name = name
 	container.Parent = Root
+
+	print("[Spec.lua] Adding " .. name .. " to Root. Container: " .. container)
 end
 
 -- Load TestEZ and run our tests

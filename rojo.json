@@ -1,0 +1,10 @@
+{
+	"name": "RDM",
+	"servePort": 8000,
+	"partitions": {
+		"RDM": {
+			"path": "RDM/Source",
+			"target": "ServerScriptService.RDM"
+		}
+	}
+}
