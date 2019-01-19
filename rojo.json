@@ -5,6 +5,10 @@
 		"RDM": {
 			"path": "RDM/Source",
 			"target": "ServerScriptService.RDM"
+		},
+		"AllRDM": {
+			"path": "RDM",
+			"target": "ServerScriptService.AllRDM"
 		}
 	}
 }

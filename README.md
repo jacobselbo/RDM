@@ -9,6 +9,9 @@
 	<a href="https://travis-ci.org/froghopperjacob/RDM">
 		<img src="https://travis-ci.org/froghopperjacob/RDM.svg?branch=master" alt="Travis" />
 	</a>
+	<a href="https://coveralls.io/github/froghopperjacob/RDM?branch=master">
+		<img src="https://coveralls.io/repos/github/froghopperjacob/RDM/badge.svg?branch=master" alt="Coverage Status" />
+	</a>
 </div>
 
 <div align="center">
@@ -30,8 +33,8 @@
 
 **Using String Module**
 ```lua
-local RDMF = game:GetService("ServerScriptService"):WaitForChild("RDM"):WaitForChild("Source")
-local RDM = require(RDMF:WaitForChild("MainModule"))(script)
+local RDMF = game:GetService("ServerScriptService"):WaitForChild("RDM")
+local RDM = require(RDMF:WaitForChild("MainModule"))()
 
 local players = game:GetService("Players")
 
@@ -42,10 +45,10 @@ local stringUtil = RDM:Import("String")
 
 players.PlayerAdded:Connect(function(player)
 	player.Chatted:Connect(function(message)
-		if (stringUtil:Starts(prefix)) then
+		if (stringUtil:Starts(message, prefix)) then
 			local message = string.sub(message, prefix:len())
 			local arguments = stringUtil:Split(message, dem)
-			
+
 			if (arguments[1] == "kill") then
 				players[arguments[2]].Character:BreakJoints()
 			end

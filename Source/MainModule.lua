@@ -2,10 +2,10 @@ require(script.Parent.BaseClass)
 
 local ClassHandler = require(script.Parent.ClassHandler)
 
-return function(proj)
+return function(scrOrFenv)
 	local RDM = ClassHandler:Get("RDM")
 
-	RDM:SetProjectArea(proj)
+	RDM:SetProjectArea(scrOrFenv)
 
 	return RDM
 end

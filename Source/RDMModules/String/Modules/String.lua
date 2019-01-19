@@ -159,6 +159,18 @@ return {
 					return string.upper(str) == str
 				end,
 
+				["EncodeHTML"] = function(self, str)
+					if (type(self) ~= "table") then
+						str = self
+					end
+
+					if (type(str) ~= "string") then
+						return error("Invalid string given. Given - " .. type(str) .. " Excepted - string")
+					end
+
+					return html:Encode(str)
+				end,
+
 				["DecodeHTMLEntities"] = function(self, str)
 					if (type(self) ~= "table") then
 						str = self

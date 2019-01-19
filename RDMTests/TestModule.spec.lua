@@ -3,7 +3,7 @@ return function()
 	local testModule = RDM:Import("TestModule")
 
 	describe("TestModule", function()
-		it("should give true for Test", function()
+		it("should be alive", function()
 			local test = testModule:Test()
 
 			expect(test).to.equal(true)

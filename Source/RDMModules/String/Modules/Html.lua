@@ -2279,6 +2279,26 @@ return {
 			{
 				["Decode"] = function(self, str)
 					return string.gsub(str, '&.-;', htmlEntities)
+				end,
+
+				["Encode"] = function(self, str)
+					local input = self:Decode(str)
+
+					local output = input:gsub('([%z\1-\127\194-\244][\128-\191]*)', function(char)
+						local charbyte = char:byte()
+
+						if (string.len(char) == 1) then
+							if (charbyte == 32) then -- Space char
+								return ' '
+							end
+
+							return '&#'.. charbyte ..';'
+						else
+							return char
+						end
+					end)
+
+					return output
 				end
 			}
 		)

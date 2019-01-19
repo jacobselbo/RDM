@@ -9,8 +9,7 @@ return {
 	["Site"] =					"",
 	
 	["Lisence"] = 				{
-		["Type"] = 		"Apache 2.0",
-		["Script"] = 	script.Parent:WaitForChild("LISENCE")
+		["Type"] = 		"Apache 2.0"
 	},
 
 	["Dependencies"] = { },

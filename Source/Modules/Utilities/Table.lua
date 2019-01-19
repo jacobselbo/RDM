@@ -27,19 +27,9 @@ return {
 					return swtbl
 				end,
 
-				["ContainsKey"] = function(tab, key)
-					for keyValue, _ in pairs(tab) do
-						if keyValue == key then
-							return true
-						end
-					end
-
-					return false
-				end,
-
-				["ContainsValue"] = function(tab, value)
-					for _, Value in pairs(tab) do
-						if Value == value then
+				["ContainsValue"] = function(self, tab, wantedValue)
+					for _, tabValue in pairs(tab) do
+						if (tabValue == wantedValue) then
 							return true
 						end
 					end
@@ -51,7 +41,7 @@ return {
 					if type(tab) ~= "table" then return tab end
 
 				    local meta = getmetatable(tab)
-				    local target = {}
+				    local target = { }
 
 				    for k, v in pairs(tab) do
 				        if type(v) == "table" then
@@ -66,14 +56,8 @@ return {
 				    return target
 				end,
 
-				["Choice"] = function(tab)
+				["Choice"] = function(self, tab)
 					return tab[ math.random(#tab) ]
-				end,
-
-				["StripStatus"] = function(tab)
-					tab["status"] = nil
-
-					return tab
 				end
 			}
 		)

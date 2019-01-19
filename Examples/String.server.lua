@@ -1,5 +1,5 @@
-local RDMF = game:GetService("ServerScriptService"):WaitForChild("RDM"):WaitForChild("Source")
-local RDM = require(RDMF:WaitForChild("MainModule"))(script)
+local RDMF = game:GetService("ServerScriptService"):WaitForChild("RDM")
+local RDM = require(RDMF:WaitForChild("MainModule"))()
 
 local players = game:GetService("Players")
 
@@ -10,7 +10,7 @@ local stringUtil = RDM:Import("String")
 
 players.PlayerAdded:Connect(function(player)
 	player.Chatted:Connect(function(message)
-		if (stringUtil:Starts(prefix)) then
+		if (stringUtil:Starts(message, prefix)) then
 			local message = string.sub(message, prefix:len())
 			local arguments = stringUtil:Split(message, dem)
 
