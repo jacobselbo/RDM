@@ -71,8 +71,9 @@ This is probably the best method of downloading since you will have a constantly
 4. Add `RDM - Roblox Dependency Manager` to your wanted location
 
 **Download through Github**
+*Note this is note been made yet*
 
-Run in the command bar. If you want RDM to not be placed in `ServerScriptService` then where it calls the loadstring put the destination you want.
+Run in the command bar. If you want RDM to not be placed in `ServerScriptService` then where it calls the loadstring put the destination you want. If you want all of RDM then put true for the second argument.
 
 *Normally*
 ```lua
@@ -83,13 +84,18 @@ local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:Get
 local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/Install.lua"))(game:GetService("ServerStorage"))
 ```
 
+*All of RDM*
+```lua
+local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/Install.lua"))(null, true)
+```
+
 ## Installing Packages
 
 There are two methods of installing packages. The most recommended way of installing packages is locally and not at runtime.
 
 **Installing Packages Locally**
 
-There is also two methods of installing packages.
+There is also two methods of installing packages locally.
 
 *Installing through script*
 

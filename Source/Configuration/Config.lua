@@ -5,5 +5,7 @@ return {
 
 	["RDMModulesFolder"] = false,
 	["RDMPackageModule"] = false,
+
+	["DebugPrint"] = false,
 	-- todo more settings
 }

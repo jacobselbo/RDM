@@ -2,42 +2,38 @@ return {
 	["Init"] = function(baseClass, prereqs)
 		-- [[ Constants ]] --
 
-		local httpService = game:GetService("HttpService")
-		local insertService = game:GetService("InsertService")
+		local HttpService = game:GetService("HttpService")
+		local InsertService = game:GetService("InsertService")
 
-		local tableUtil = prereqs["Table"]
-		local settingsHandler = prereqs["SettingsHandler"]
-		local cacheHandler = prereqs["CacheHandler"]
+		local Table = prereqs["Table"]
+		local SettingsHandler = prereqs["SettingsHandler"]
+		local CacheHandler = prereqs["CacheHandler"]
+		local LogHandler = prereqs["LogHandler"]
 
-		local errorFormat =  "RDM : %s | Got - %s | Excepted - %s"
 		local importFormats = {
 			["Github"] = 	"github:%a+/%a+/%d%.%d%.%d",
 			["ID"] = 		"id:%d+" -- Todo: Add supported file hostings
 		}
 
-		local RDMModulesFolder = settingsHandler.Get("RDMModulesFolder")
-		-- local RDMPackage = settingsHandler.Get("RDMPackageModule") Todo this later
-		local intergratedRDMModules = script.Parent.Parent.Parent:WaitForChild("RDMModules")
+		local RDMModulesFolder = SettingsHandler.Get("RDMModulesFolder")
+		local runWithErrors = SettingsHandler.Get("RunWithErrors")
+		local localModules = SettingsHandler.Get("LocalModules")
+		-- local RDMPackage = SettingsHandler.Get("RDMPackageModule") Todo this later
 
-		local localModules = settingsHandler.Get("LocalModules")
+		local intergratedRDMModules = script.Parent.Parent.Parent:WaitForChild("RDMModules")
 
 		-- [[ Class ]] --
 		return baseClass:Extend(
 			{
-				["Error"] = function(self, ...)
-					return error(string.format(errorFormat, unpack({ ... })))
-				end,
-
-				-- [[ Checks ]]
+				-- [[ Checks ]] --
 
 				["CheckHttp"] = function(self)
 					if (not localModules) then
-						if (not httpService.HttpEnabled) then
-							error("Http hasn't been enabled for RDM. " ..
+						if (not HttpService.HttpEnabled) then
+							return not LogHandler:Log("High", true, "Http hasn't been enabled for RDM. " ..
 								"\nIf you want to use Local Modules add LocalModules to true in the setup. " ..
-								"If not then put game:GetService('HttpService').HttpEnabled = true then play again")
-
-							return false
+								"If not then put game:GetService('HttpService').HttpEnabled = true then play again",
+								"HTTP Enabled", "HTTP Disabled")
 						else
 							return true
 						end
@@ -72,11 +68,17 @@ return {
 					end
 
 					if (RDMModulesFolder == false) then
-						return error("No RDMModules folder has been added in the setup options.")
+						return not LogHandler:Log("High", true,
+							"No RDMModules folder has been added in the setup options.",
+							"RDMModules folder in setup options",
+							"N/A")
 					end
 
 					if (RDMModulesFolder:FindFirstChild(moduleStr) == nil) then
-						return error("No " .. moduleStr .. " module found in RDM Modules. Make sure you have the folder in there.")
+						return not LogHandler:Log("High", runWithErrors,
+							"No " .. moduleStr .. " module found in RDM Modules. " ..
+							"Make sure you have the folder in there.",
+							moduleStr .. " in RDM Modules", moduleStr)
 					end
 
 					return RDMModulesFolder:FindFirstChild(moduleStr)
@@ -93,20 +95,22 @@ return {
 					end
 
 					if (moduleID == nil) then
-						return error("Invalid ID given. Got - " .. origModuleID .. " Excepted - id:12381231")
+						return not LogHandler:Log("High", runWithErrors, "Invalid ID given.",
+							"12837123", origModuleID)
 					end
 
 					local tPS, tPM = pcall(function()
-						return insertService:LoadAssetVersion(moduleID)
+						return InsertService:LoadAssetVersion(moduleID)
 					end)
 
 					if (not tPS) then
 						local tMS, tMM = pcall(function()
-							return insertService:LoadAsset(moduleID)
+							return InsertService:LoadAsset(moduleID)
 						end)
 
 						if (not tMS) then
-							return error("Invalid ID given.")
+							return not LogHandler:Log("High", runWithErrors, "Invalid ID given.",
+								"12837123", moduleID)
 						end
 
 						mod = tMM
@@ -115,7 +119,8 @@ return {
 					end
 
 					if (mod == nil) then
-						return error("A unexcepted error has occured.")
+						return LogHandler:Log("High", runWithErrors, "Invalid ID given.",
+							"12837123", moduleID)
 					end
 
 					mod.Parent = RDMModulesFolder
@@ -140,11 +145,12 @@ return {
 				-- [[ Dependencies ]] --
 
 				["GetLoadedDependenciesByName"] = function(self, projectName)
-					local loadedCache = cacheHandler:GetLoadedCache()
+					local loadedCache = CacheHandler:GetLoadedCache()
 					local project = loadedCache[projectName]
 
 					if (project == nil) then
-						return error("Invalid project name given or loaded.")
+						return not LogHandler:Log("High", true, "Invalid project name given or loaded.",
+							"String", projectName)
 					end
 
 					local projectPackage = project["Package"]
@@ -153,11 +159,12 @@ return {
 				end,
 
 				["GetLoadedOptionalDependenciesByName"] = function(self, projectName)
-					local loadedCache = cacheHandler:GetLoadedCache()
+					local loadedCache = CacheHandler:GetLoadedCache()
 					local project = loadedCache[projectName]
 
 					if (project == nil) then
-						return error("Invalid project name given or loaded. ( " .. projectName .. " )")
+						return not LogHandler:Log("High", true, "Invalid project name given or loaded.",
+							"String", projectName)
 					end
 
 					local projectPackage = project["Package"]
@@ -166,7 +173,7 @@ return {
 				end,
 
 				["GetLoadedDependenciesByFolder"] = function(self, projectFolder)
-					local loadedCache = cacheHandler:GetLoadedCache()
+					local loadedCache = CacheHandler:GetLoadedCache()
 
 					if (projectFolder == nil or
 							projectFolder.ClassName ~= "Folder" or
@@ -174,7 +181,8 @@ return {
 							projectFolder:FindFirstChild("Package").ClassName ~= "ModuleScript" or
 							projectFolder:FindFirstChild("RDMModules") == nil or
 							projectFolder:FindFirstChild("RDMModules").ClassName ~= "Folder") then
-						return error("Invalid project given. ( " .. projectFolder.Name .. " )")
+						return not LogHandler:Log("High", true, "Invalid project name given or loaded.",
+							"String", projectFolder.Name)
 					end
 
 					local projectPackage = require(projectFolder.Package)
@@ -183,7 +191,7 @@ return {
 				end,
 
 				["GetLoadedOptionalDependenciesByFolder"] = function(self, projectFolder)
-					local loadedCache = cacheHandler:GetLoadedCache()
+					local loadedCache = CacheHandler:GetLoadedCache()
 
 					if (projectFolder == nil or
 							projectFolder.ClassName ~= "Folder" or
@@ -191,7 +199,8 @@ return {
 							projectFolder:FindFirstChild("Package").ClassName ~= "ModuleScript" or
 							projectFolder:FindFirstChild("RDMModules") == nil or
 							projectFolder:FindFirstChild("RDMModules").ClassName ~= "Folder") then
-						return error("Invalid project given. ( " .. projectFolder.Name .. " )")
+						return not LogHandler:Log("High", true, "Invalid project name given or loaded.",
+							"String", projectFolder.Name)
 					end
 
 					local projectPackage = require(projectFolder.Package)
@@ -202,12 +211,13 @@ return {
 				-- [[ Get Standard ]]
 
 				["Get"] = function(self, moduleStr)
-					if (cacheHandler:GetUnloadedProject(moduleStr) ~= nil) then
-						return cacheHandler:GetUnloadedProject(moduleStr)
+					if (CacheHandler:GetUnloadedProject(moduleStr) ~= nil) then
+						return CacheHandler:GetUnloadedProject(moduleStr)
 					end
 
 					if (type(moduleStr) ~= "string") then
-						return self:Error("Invalid module given.", type(moduleStr), "string")
+						return not LogHandler:Log("High", true, "Wrong type of module given.",
+							"String", type(moduleStr))
 					end
 
 					local success, hostType = self:GetType(moduleStr)
@@ -215,14 +225,14 @@ return {
 					if (not success) then
 						local module = self:GetByFile(moduleStr)
 
-						cacheHandler:AddUnloadedProject(moduleStr, module)
+						CacheHandler:AddUnloadedProject(moduleStr, module)
 
 						return module
 					end
 
 					local module = nil
 
-					tableUtil.Switch(hostType):CaseOf({
+					Table:Switch(hostType):caseOf({
 						["Github"] = function()
 							module = self:GetByGithub(moduleStr)
 						end,
@@ -236,6 +246,10 @@ return {
 						wait() -- todo timeout
 					until module ~= nil
 
+					if (SettingsHandler.Get("DebugPrint")) then
+						LogHandler:Log("Debug", false, "Adding " .. moduleStr .. " to the Unloaded Module Cache")
+					end
+
 					if (module.ClassName == "ModuleScript") then
 						local newFolder = Instance.new("Folder")
 
@@ -246,12 +260,12 @@ return {
 							child.Parent = newFolder
 						end
 
-						cacheHandler:AddUnloadedProject(moduleStr, newFolder)
+						CacheHandler:AddUnloadedProject(moduleStr, newFolder)
 
 						return newFolder
 					end
 
-					cacheHandler:AddUnloadedProject(moduleStr, module)
+					CacheHandler:AddUnloadedProject(moduleStr, module)
 
 					return module
 				end,
@@ -259,5 +273,5 @@ return {
 		)
 	end,
 
-	["Prerequisites"] = { "Table", "SettingsHandler", "CacheHandler" }
+	["Prerequisites"] = { "Table", "SettingsHandler", "CacheHandler", "LogHandler" }
 }

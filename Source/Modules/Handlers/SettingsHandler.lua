@@ -3,13 +3,21 @@ local RDMSettings = require(configFolder:WaitForChild("Config"))
 
 return {
 	["Init"] = function(baseClass, prereqs)
+		-- [[ Constants ]] --
+
+		local LogHandler = prereqs["LogHandler"]
+
+		-- [[ Class ]] --
 		return baseClass:Extend(
 			{
 				["Get"] = function(setting)
 					local RDMSetting = RDMSettings[setting]
 
 					if (RDMSetting == nil) then
-						return error("Invalid setting given. Got: " .. setting)
+						return not LogHandler:Log("High", true,
+							"Invalid setting given",
+							"LocalModules",
+							setting)
 					end
 
 					return RDMSetting
@@ -19,7 +27,10 @@ return {
 					local RDMSetting = RDMSettings[setting]
 
 					if (RDMSetting == nil) then
-						return error("Invalid setting given. Got: " .. setting)
+						return not LogHandler:Log("High", true,
+							"Invalid setting given",
+							"LocalModules",
+							setting)
 					end
 
 					RDMSettings[setting] = newValue
@@ -30,5 +41,5 @@ return {
 		)
 	end,
 
-	["Prerequisites"] = { }
+	["Prerequisites"] = { "LogHandler" }
 }

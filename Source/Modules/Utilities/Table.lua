@@ -2,16 +2,16 @@ return {
 	["Init"] = function(baseClass, prereqs)
 		return baseClass:Extend(
 			{
-				["Switch"] = function(c)
+				["Switch"] = function(self, c)
 					local swtbl = {
 						caseVariable = c,
 						caseOf = function (self, code)
 							local f
 
 							if (self.caseVariable) then
-								f = code[self.caseVariable] or code.default
+								f = code[self.caseVariable] or code.Default
 							else
-								f = code.missing or code.default
+								f = code.Missing or code.Default
 							end
 
 							if f then

@@ -2,47 +2,58 @@ return {
 	["Init"] = function(baseClass, prereqs)
 		-- [[ Constants ]] --
 
-		local cacheHandler = prereqs["CacheHandler"]
-		local getHandler = prereqs["GetHandler"]
+		local CacheHandler = prereqs["CacheHandler"]
+		local GetHandler = prereqs["GetHandler"]
+		local SettingsHandler = prereqs["SettingsHandler"]
+		local LogHandler = prereqs["LogHandler"]
 
-		local errorFormat =  "RDM : %s | Got - %s | Excepted - %s"
+		local runWithErrors = SettingsHandler.Get("RunWithErrors")
 
 		-- [[ Class ]] --
 		return baseClass:Extend(
 			{
-				["Error"] = function(self, ...)
-					return error(string.format(errorFormat, unpack({ ... })))
-				end,
-
 				-- [[ Load ]] --
 
 				["Load"] = function(self, moduleStr, version, RDM)
-
-					if (cacheHandler:GetLoadedProject(moduleStr) ~= nil) then
-						return cacheHandler:GetLoadedProject(moduleStr)["Module"]
+					if (CacheHandler:GetLoadedProject(moduleStr) ~= nil) then
+						return CacheHandler:GetLoadedProject(moduleStr)["Module"]
 					end
 
-					local unloadedModule = getHandler:Get(moduleStr)
+					local unloadedModule = GetHandler:Get(moduleStr)
 
 					if (unloadedModule == false or unloadedModule == nil) then
-						return self:Error("Invalid module.", moduleStr, "string")
+						return not LogHandler:Log("High", runWithErrors,
+							"Invalid module given.",
+							"String", moduleStr)
 					end
 
-					if (unloadedModule:FindFirstChild("MainModule") == nil) then return error("Invalid RDM module given.") end
-					if (unloadedModule:FindFirstChild("Package") == nil) then return error("Invalid RDM module given.") end
+					if (unloadedModule:FindFirstChild("MainModule") == nil or
+						unloadedModule:FindFirstChild("Package") == nil) then
+						return not LogHandler:Log("High", runWithErrors,
+							"Invalid RDM module given.",
+							"A package with MainModule and Package", unloadedModule)
+					end
 
+					local package = require(unloadedModule:FindFirstChild("Package"))
 					local load = {
 						["Module"] = require(unloadedModule:FindFirstChild("MainModule"))(RDM),
-						["Package"] = require(unloadedModule:FindFirstChild("Package"))
+						["Package"] = package
 					}
 
 					if (version ~= nil) then
-						if (load["Package"]["CurrentVersion"] ~= version) then
-							return error("The package version and the wanted version are different. Change either")
+						if (package["CurrentVersion"] ~= version) then
+							return LogHandler:Log("Medium", runWithErrors,
+								"The package version and the wanted version are different.",
+								"1.3.2 : 1.3.2", package["CurrentVersion"] .. " : " .. version)
 						end
 					end
 
-					cacheHandler:AddLoadedProject(load["Package"]["Name"], load)
+					if (SettingsHandler.Get("DebugPrint")) then
+						LogHandler:Log("Debug", false, "Adding " .. moduleStr .. " to the Loaded Module Cache.\n" ..
+							"Lisence - " .. package["Lisence"]["Type"] .. " | Version - " .. package["CurrentVersion"])
+					end
+
+					CacheHandler:AddLoadedProject(load["Package"]["Name"], load)
 
 					return load
 					-- todo
@@ -51,5 +62,5 @@ return {
 		)
 	end,
 
-	["Prerequisites"] = { "CacheHandler", "GetHandler" }
+	["Prerequisites"] = { "CacheHandler", "GetHandler", "SettingsHandler", "LogHandler" }
 }

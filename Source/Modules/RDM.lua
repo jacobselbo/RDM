@@ -6,6 +6,7 @@ return {
 		local SettingsHandler = prereqs["SettingsHandler"]
 		local ProjectHandler = prereqs["ProjectHandler"]
 		local GetHandler = prereqs["GetHandler"]
+		local LogHandler = prereqs["LogHandler"]
 
 		-- [[ Class ]] --
 
@@ -15,7 +16,8 @@ return {
 
 				["Import"] = function(self, module, version)
 					if (type(self) ~= "table") then
-						return error("Use : instead of . on import")
+						return LogHandler:Log("High", true, "Use : instead of .",
+							":", ".")
 					end
 
 					return ModuleHandler:Load(module, version, self)["Module"]
@@ -23,7 +25,8 @@ return {
 
 				["TryImport"] = function(self, module, version)
 					if (type(self) ~= "table") then
-						return error("Use : instead of . on import")
+						return LogHandler:Log("High", true, "Use : instead of .",
+							":", ".")
 					end
 
 					local success, message = pcall(function()
@@ -67,7 +70,8 @@ return {
 					local projectInstance
 
 					if (fenv == nil) then
-						return error("Invalid arguments ginen.")
+						return LogHandler:Log("High", true, "No Enviroment given",
+							"getfenv(1)", fenv)
 					end
 
 					if (fenv.ClassName ~= nil) then
@@ -75,17 +79,22 @@ return {
 					elseif (fenv.print == nil) then
 						projectInstance = fenv.script
 					else
-						return error("Invalid arguments given.")
+						return LogHandler:Log("High", true, "Invalid Enviorment given",
+							"getfenv(1)", fenv)
 					end
 
 					if (projectInstance.ClassName ~= "ModuleScript" and projectInstance.ClassName ~= "Script") then
-						return error("Invalid script given.")
+						return LogHandler:Log("High", true, "Invalid script given",
+							"Script", projectInstance.ClassName)
 					end
 
 					local project = projectInstance.Parent
 
 					if (project:FindFirstChild("RDMModules") == nil or
-						project:FindFirstChild("Package") == nil) then return error("Invalid project area given.") end
+						project:FindFirstChild("Package") == nil) then
+						return LogHandler:Log("High", true, "Invalid project area given.",
+							"Project wiht RDMModules and Package", project)
+					end
 
 					SettingsHandler.Set("RDMModulesFolder", project:FindFirstChild("RDMModules"))
 					SettingsHandler.Set("RDMPackageModule", project:FindFirstChild("Package"))
@@ -104,5 +113,5 @@ return {
 		)
 	end,
 
-	["Prerequisites"] = { "SettingsHandler" }
+	["Prerequisites"] = { "SettingsHandler", "LogHandler" }
 }

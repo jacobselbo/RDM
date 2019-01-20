@@ -2,14 +2,18 @@ return {
 	["Init"] = function(baseClass, prereqs)
 		-- [[ Constants ]] --
 
-		local getHandler = prereqs["GetHandler"]
-		local cacheHandler = prereqs["CacheHandler"]
+		local GetHandler = prereqs["GetHandler"]
+		local CacheHandler = prereqs["CacheHandler"]
+		local SettingsHandler = prereqs["SettingsHandler"]
+		local LogHandler = prereqs["LogHandler"]
+
+		local runWithErrors = SettingsHandler.Get("RunWithErrors")
 
 		-- [[ Class ]] --
 
 		return baseClass:Extend(
 			{
-				-- [[ Checks ]]
+				-- [[ Checks ]] --
 
 				["CheckIfValidPackage"] = function(self, package, modules)
 					local depends, optDepends = package["Dependencies"], package["OptionalDependencies"]
@@ -19,9 +23,9 @@ return {
 							local gPackage = require(gDepend.Package)
 
 							if (gPackage["CurrentVersion"] ~= version) then
-								error(gPackage["Name"] .. "'s version ( " .. gPackage["CurrentVersion"] .. " ) is not the same as " .. version)
-
-								return false
+								return not LogHandler:Log("Medium", runWithErrors,
+									gPackage["Name"] .. "'s version is not the same as " .. version,
+									"1.3.2 : 1.3.2", gPackage["CurrentVersion"] .. " : " .. version)
 							end
 						else
 							return false
@@ -31,12 +35,12 @@ return {
 					end
 
 					for depend, version in pairs(depends) do
-						local gDepend = getHandler:GetByFile(depend)
+						local gDepend = GetHandler:GetByFile(depend)
 
 						if (gDepend == nil) then
-							error("There isn't " .. depend .. " in the RDM Modules.")
-
-							return false
+							return not LogHandler:Log("High", runWithErrors,
+								"Couldn't find the RDM Module",
+								"String", depend)
 						end
 
 						if (not checkValidProject(gDepend, version)) then
@@ -45,7 +49,7 @@ return {
 					end
 
 					for depend, version in pairs(optDepends) do
-						local gDepend = getHandler:GetByFile(depend)
+						local gDepend = GetHandler:GetByFile(depend)
 
 						if (gDepend) then
 							if (not checkValidProject(gDepend, version)) then
@@ -66,9 +70,9 @@ return {
 												projectPath:FindFirstChild("RDMModules")
 
 					local function invalidPath()
-						error("Invalid project. Called: " .. projectPath.Name)
-
-						return false
+						return not LogHandler:Log("High", runWithErrors,
+							"Invalid Project",
+							"String", projectPath.Name)
 					end
 
 					if (package == nil) then
@@ -83,8 +87,6 @@ return {
 						if (modules.ClassName ~= "Folder") then
 							return invalidPath()
 						end
-
-						print(modules.ClassName)
 					end
 
 					if (package.ClassName ~= "ModuleScript") then
@@ -108,7 +110,7 @@ return {
 
 						local package = require(projectFolder:FindFirstChild("Package"))
 
-						cacheHandler:AddCheckedProject(package["Name"], projectFolder)
+						CacheHandler:AddCheckedProject(package["Name"], projectFolder)
 					end
 
 					return projectFolder
@@ -126,7 +128,7 @@ return {
 					if (packageFile) then
 						local package = require(packageFile)
 
-						cacheHandler:AddCheckedProject(package["Name"], projectFolder)
+						CacheHandler:AddCheckedProject(package["Name"], projectFolder)
 					end
 
 					return true
@@ -135,5 +137,5 @@ return {
 		)
 	end,
 
-	["Prerequisites"] = { "GetHandler", "CacheHandler" }
+	["Prerequisites"] = { "GetHandler", "CacheHandler", "SettingsHandler", "LogHandler" }
 }

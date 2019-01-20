@@ -9,7 +9,7 @@ return {
 		-- [[ Class ]] --
 		return baseClass:Extend(
 			{
-				-- [[ Gets ]]
+				-- [[ Gets ]] --
 
 				["GetUnloadedCache"] = function(self)
 					return unloadedCache
