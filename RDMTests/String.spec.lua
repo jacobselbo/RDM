@@ -47,11 +47,11 @@ return function()
 			expect(decoded).to.equal(firstStringTesting)
 		end)
 
-		it("should be '&#109;&#97;&#120;&#38;&#106;&#111;&#104;&#110;&#39;&#115;" ..
+		it("should be '&#109;&#97;&#120;&#38;&#106;&#111;&#104;&#110;&#39;&#115; " ..
 			"&#102;&#97;&#99;&#116;&#111;&#114;&#121;' when html encoded", function()
 			local encoded = stringUtil:EncodeHTML(firstStringTesting)
 
-			expect(encoded).to.equal("&#109;&#97;&#120;&#38;&#106;&#111;&#104;&#110;&#39;&#115;" ..
+			expect(encoded).to.equal("&#109;&#97;&#120;&#38;&#106;&#111;&#104;&#110;&#39;&#115; " ..
 				"&#102;&#97;&#99;&#116;&#111;&#114;&#121;")
 		end)
 	end)
