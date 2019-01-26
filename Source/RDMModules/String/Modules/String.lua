@@ -183,6 +183,20 @@ return {
 					return html:Decode(str)
 				end,
 
+				["DecodeURL"] = function(self, str)
+					if (type(self) ~= "table") then
+						str = self
+					end
+
+					if (type(str) ~= "string") then
+						return error("Invalid string given. Given - " .. type(str) .. " Excpected - string")
+					end
+
+					return str:gsub("%%(%x%x)", function(x)
+						return string.char(tonumber(x, 16))
+					end)
+				end,
+
 				["ToBoolean"] = function(self, str)
 					if (type(self) ~= "table") then
 						str = self

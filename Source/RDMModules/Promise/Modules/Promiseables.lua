@@ -8,7 +8,7 @@ return {
 		-- [[ Class ]] --
 		return baseClass:Extend(
 			{
-				["GeneratePromiseables"] = function(self)
+				["GeneratePromiseables"] = function(self, want)
 					local gotPromiseables = { }
 					local gotCatches = { }
 					local continuePromise = true
@@ -55,8 +55,7 @@ return {
 
 						["catch"] = function(promSelf, message, func)
 							if (type(promSelf) ~= "table") then
-								return RDM:Log("High", true, "Call catch with a : instead of a .",
-									name, ":", ".")
+								message, func = promSelf, message
 							end
 
 							if (type(message) == "function") then
@@ -79,10 +78,12 @@ return {
 								table.insert(gotCatches, func)
 							end
 
-							return {
-								["catch"] = promSelf["catch"],
+							local promiseables = self:GeneratePromiseables(true)
 
-								["complete"] = promSelf["complete"]
+							return {
+								["catch"] = promiseables["catch"],
+
+								["complete"] = promiseables["complete"]
 							}
 						end,
 
@@ -130,7 +131,11 @@ return {
 						return true
 					end
 
-					return promiseables, resolve, reject
+					if (want == nil or want == false) then
+						return promiseables, resolve, reject
+					else
+						return promiseables
+					end
 				end,
 			} -- todo more stuff
 		)

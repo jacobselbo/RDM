@@ -4,6 +4,8 @@ return function()
 	local RDM = require(script.Parent.Parent.Source.MainModule)(script)
 	local stringUtil = RDM:Import("String")
 
+	local HttpService = game:GetService("HttpService")
+
 	describe("The string: max&john's factory", function()
 		it("starts with max", function()
 			local boolean = stringUtil:Starts(firstStringTesting, "max")
@@ -53,6 +55,13 @@ return function()
 
 			expect(encoded).to.equal("&#109;&#97;&#120;&#38;&#106;&#111;&#104;&#110;&#39;&#115; " ..
 				"&#102;&#97;&#99;&#116;&#111;&#114;&#121;")
+		end)
+
+		it("should be the same string when URL decoded", function()
+			local encoded = HttpService:UrlEncode(firstStringTesting)
+			local decoded = stringUtil:DecodeURL(encoded)
+
+			expect(decoded).to.equal(firstStringTesting)
 		end)
 	end)
 
