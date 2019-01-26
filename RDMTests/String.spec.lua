@@ -69,13 +69,16 @@ return function()
 
 		it("should be the same string when URL decoded", function()
 			local encoded
+			local roblox, m = pcall(function()
+				return HttpService["UrlEncode"] ~= nil
+			end)
 
-			if (HttpService["UrlEncode"] ~= nil) then
+			if (roblox) then
 				encoded = HttpService:UrlEncode(firstStringTesting)
 			else
 				encoded = UrlEncode(firstStringTesting) -- Lemur doesn't have UrlEncode ;(
 			end
-			
+
 			local decoded = stringUtil:DecodeURL(encoded)
 
 			expect(decoded).to.equal(firstStringTesting)
