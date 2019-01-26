@@ -7,7 +7,7 @@ return {
 	["Author"] = 				"froghopperjacob",
 	["Description"] =			"A test module to make sure RDM works.",
 	["Site"] =					"",
-	
+
 	["Lisence"] = 				{
 		["Type"] = 		"Apache 2.0"
 	},

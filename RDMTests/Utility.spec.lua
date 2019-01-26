@@ -29,7 +29,8 @@ return function()
 			expect(boolean).to.equal(true)
 		end)
 
-		it("A randomized output from { 1, 3, 5, 7 } should still be something from that table ( Uses contains value )", function()
+		it("A randomized output from { 1, 3, 5, 7 } should still be " ..
+			"something from that table ( Uses contains value )", function()
 			local tab = { 1, 3, 5, 7 }
 
 			local random = tableUtil:Choice(tab)

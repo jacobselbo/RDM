@@ -5,7 +5,7 @@ return {
 			{
 				["Test"] = function(self)
 					return true
-				end	
+				end
 			}  -- todo test dependencies
 		)
 	end,

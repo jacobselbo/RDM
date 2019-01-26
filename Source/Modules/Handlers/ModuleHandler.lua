@@ -23,14 +23,14 @@ return {
 
 					if (unloadedModule == false or unloadedModule == nil) then
 						return not LogHandler:Log("High", runWithErrors,
-							"Invalid module given.",
+							"Invalid module given.", nil,
 							"String", moduleStr)
 					end
 
 					if (unloadedModule:FindFirstChild("MainModule") == nil or
 						unloadedModule:FindFirstChild("Package") == nil) then
 						return not LogHandler:Log("High", runWithErrors,
-							"Invalid RDM module given.",
+							"Invalid RDM module given.", nil,
 							"A package with MainModule and Package", unloadedModule)
 					end
 
@@ -43,14 +43,14 @@ return {
 					if (version ~= nil) then
 						if (package["CurrentVersion"] ~= version) then
 							return LogHandler:Log("Medium", runWithErrors,
-								"The package version and the wanted version are different.",
+								"The package version and the wanted version are different.", nil,
 								"1.3.2 : 1.3.2", package["CurrentVersion"] .. " : " .. version)
 						end
 					end
 
 					if (SettingsHandler.Get("DebugPrint")) then
 						LogHandler:Log("Debug", false, "Adding " .. moduleStr .. " to the Loaded Module Cache.\n" ..
-							"Lisence - " .. package["Lisence"]["Type"] .. " | Version - " .. package["CurrentVersion"])
+							"Lisence - " .. package["Lisence"]["Type"] .. " | Version - " .. package["CurrentVersion"], nil)
 					end
 
 					CacheHandler:AddLoadedProject(load["Package"]["Name"], load)

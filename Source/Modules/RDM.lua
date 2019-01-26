@@ -12,6 +12,16 @@ return {
 
 		return baseClass:Extend(
 			{
+				-- [[ Log ]] --
+
+				["Log"] = function(self, logLevel, yield, message, name, expected, got)
+					if (type(self) ~= "table") then
+						logLevel, yield, message, name, expected, got = self, logLevel, yield, message, name, expected
+					end
+
+					return LogHandler:Log(logLevel, yield, message, name, expected, got)
+				end,
+
 				-- [[ Imports ]] --
 
 				["Import"] = function(self, module, version)

@@ -23,7 +23,7 @@ install:
   - luarocks install luacheck
 
 script:
-  - luacheck Examples Source
+  - luacheck Examples Source RDMTests
   - lua -lluacov spec.lua
 
 after_success:

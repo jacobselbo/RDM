@@ -1,6 +1,3 @@
-local shouldGive = "should give true for %s"
-local shouldBe = "should be true for %s"
-
 local firstStringTesting = "max&john's factory"
 
 return function()
@@ -50,10 +47,12 @@ return function()
 			expect(decoded).to.equal(firstStringTesting)
 		end)
 
-		it("should be '&#109;&#97;&#120;&#38;&#106;&#111;&#104;&#110;&#39;&#115; &#102;&#97;&#99;&#116;&#111;&#114;&#121;' when html encoded", function()
+		it("should be '&#109;&#97;&#120;&#38;&#106;&#111;&#104;&#110;&#39;&#115;" ..
+			"&#102;&#97;&#99;&#116;&#111;&#114;&#121;' when html encoded", function()
 			local encoded = stringUtil:EncodeHTML(firstStringTesting)
 
-			expect(encoded).to.equal("&#109;&#97;&#120;&#38;&#106;&#111;&#104;&#110;&#39;&#115; &#102;&#97;&#99;&#116;&#111;&#114;&#121;")
+			expect(encoded).to.equal("&#109;&#97;&#120;&#38;&#106;&#111;&#104;&#110;&#39;&#115;" ..
+				"&#102;&#97;&#99;&#116;&#111;&#114;&#121;")
 		end)
 	end)
 

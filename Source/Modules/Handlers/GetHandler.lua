@@ -33,7 +33,7 @@ return {
 							return not LogHandler:Log("High", true, "Http hasn't been enabled for RDM. " ..
 								"\nIf you want to use Local Modules add LocalModules to true in the setup. " ..
 								"If not then put game:GetService('HttpService').HttpEnabled = true then play again",
-								"HTTP Enabled", "HTTP Disabled")
+								nil, "HTTP Enabled", "HTTP Disabled")
 						else
 							return true
 						end
@@ -69,7 +69,7 @@ return {
 
 					if (RDMModulesFolder == false) then
 						return not LogHandler:Log("High", true,
-							"No RDMModules folder has been added in the setup options.",
+							"No RDMModules folder has been added in the setup options.", nil,
 							"RDMModules folder in setup options",
 							"N/A")
 					end
@@ -77,7 +77,7 @@ return {
 					if (RDMModulesFolder:FindFirstChild(moduleStr) == nil) then
 						return not LogHandler:Log("High", runWithErrors,
 							"No " .. moduleStr .. " module found in RDM Modules. " ..
-							"Make sure you have the folder in there.",
+							"Make sure you have the folder in there.", nil,
 							moduleStr .. " in RDM Modules", moduleStr)
 					end
 
@@ -96,7 +96,7 @@ return {
 
 					if (moduleID == nil) then
 						return not LogHandler:Log("High", runWithErrors, "Invalid ID given.",
-							"12837123", origModuleID)
+							nil, "12837123", origModuleID)
 					end
 
 					local tPS, tPM = pcall(function()
@@ -110,7 +110,7 @@ return {
 
 						if (not tMS) then
 							return not LogHandler:Log("High", runWithErrors, "Invalid ID given.",
-								"12837123", moduleID)
+								nil, "12837123", moduleID)
 						end
 
 						mod = tMM
@@ -120,7 +120,7 @@ return {
 
 					if (mod == nil) then
 						return LogHandler:Log("High", runWithErrors, "Invalid ID given.",
-							"12837123", moduleID)
+							nil, "12837123", moduleID)
 					end
 
 					mod.Parent = RDMModulesFolder
@@ -150,7 +150,7 @@ return {
 
 					if (project == nil) then
 						return not LogHandler:Log("High", true, "Invalid project name given or loaded.",
-							"String", projectName)
+							nil, "String", projectName)
 					end
 
 					local projectPackage = project["Package"]
@@ -164,7 +164,7 @@ return {
 
 					if (project == nil) then
 						return not LogHandler:Log("High", true, "Invalid project name given or loaded.",
-							"String", projectName)
+							nil, "String", projectName)
 					end
 
 					local projectPackage = project["Package"]
@@ -182,7 +182,7 @@ return {
 							projectFolder:FindFirstChild("RDMModules") == nil or
 							projectFolder:FindFirstChild("RDMModules").ClassName ~= "Folder") then
 						return not LogHandler:Log("High", true, "Invalid project name given or loaded.",
-							"String", projectFolder.Name)
+							nil, "String", projectFolder.Name)
 					end
 
 					local projectPackage = require(projectFolder.Package)
@@ -200,7 +200,7 @@ return {
 							projectFolder:FindFirstChild("RDMModules") == nil or
 							projectFolder:FindFirstChild("RDMModules").ClassName ~= "Folder") then
 						return not LogHandler:Log("High", true, "Invalid project name given or loaded.",
-							"String", projectFolder.Name)
+							nil, "String", projectFolder.Name)
 					end
 
 					local projectPackage = require(projectFolder.Package)
@@ -217,7 +217,7 @@ return {
 
 					if (type(moduleStr) ~= "string") then
 						return not LogHandler:Log("High", true, "Wrong type of module given.",
-							"String", type(moduleStr))
+							nil, "String", type(moduleStr))
 					end
 
 					local success, hostType = self:GetType(moduleStr)
@@ -247,7 +247,7 @@ return {
 					until module ~= nil
 
 					if (SettingsHandler.Get("DebugPrint")) then
-						LogHandler:Log("Debug", false, "Adding " .. moduleStr .. " to the Unloaded Module Cache")
+						LogHandler:Log("Debug", false, "Adding " .. moduleStr .. " to the Unloaded Module Cache", nil)
 					end
 
 					if (module.ClassName == "ModuleScript") then

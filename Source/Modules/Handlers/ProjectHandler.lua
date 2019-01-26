@@ -25,6 +25,7 @@ return {
 							if (gPackage["CurrentVersion"] ~= version) then
 								return not LogHandler:Log("Medium", runWithErrors,
 									gPackage["Name"] .. "'s version is not the same as " .. version,
+									nil,
 									"1.3.2 : 1.3.2", gPackage["CurrentVersion"] .. " : " .. version)
 							end
 						else
@@ -40,7 +41,7 @@ return {
 						if (gDepend == nil) then
 							return not LogHandler:Log("High", runWithErrors,
 								"Couldn't find the RDM Module",
-								"String", depend)
+								 nil, "String", depend)
 						end
 
 						if (not checkValidProject(gDepend, version)) then
@@ -72,7 +73,7 @@ return {
 					local function invalidPath()
 						return not LogHandler:Log("High", runWithErrors,
 							"Invalid Project",
-							"String", projectPath.Name)
+							 nil, "String", projectPath.Name)
 					end
 
 					if (package == nil) then

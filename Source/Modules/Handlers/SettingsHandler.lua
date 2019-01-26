@@ -15,7 +15,7 @@ return {
 
 					if (RDMSetting == nil) then
 						return not LogHandler:Log("High", true,
-							"Invalid setting given",
+							"Invalid setting given", nil,
 							"LocalModules",
 							setting)
 					end
@@ -28,7 +28,7 @@ return {
 
 					if (RDMSetting == nil) then
 						return not LogHandler:Log("High", true,
-							"Invalid setting given",
+							"Invalid setting given", nil,
 							"LocalModules",
 							setting)
 					end

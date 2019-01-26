@@ -31,6 +31,7 @@ class.Extend = function(s, ext)
 				return s[k]
 			end
 		end,
+
 	})
 end
 
@@ -52,7 +53,6 @@ return setmetatable({}, {
 	__index = function(_, k)
 		return class[k]
 	end,
-
 	__newindex = function()
 		return error("New indexes are locked for global BaseClass")
 	end
