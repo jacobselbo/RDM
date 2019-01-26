@@ -192,6 +192,7 @@ return {
 						return error("Invalid string given. Given - " .. type(str) .. " Excpected - string")
 					end
 
+					str = str:gsub("+", " ")
 					return str:gsub("%%(%x%x)", function(x)
 						return string.char(tonumber(x, 16))
 					end)

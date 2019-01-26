@@ -1,5 +1,15 @@
 local firstStringTesting = "max&john's factory"
 
+local function UrlEncode(str)
+	local url = str:gsub("\n", "\r\n")
+
+	url = url:gsub("([^%w ])", function(c)
+		return string.format("%%%02X", string.byte(c))
+	end)
+
+	return url:gsub(" ", "+")
+end
+
 return function()
 	local RDM = require(script.Parent.Parent.Source.MainModule)(script)
 	local stringUtil = RDM:Import("String")
@@ -58,7 +68,14 @@ return function()
 		end)
 
 		it("should be the same string when URL decoded", function()
-			local encoded = HttpService:UrlEncode(firstStringTesting)
+			local encoded
+
+			if (HttpService["UrlEncode"] ~= nil) then
+				encoded = HttpService:UrlEncode(firstStringTesting)
+			else
+				encoded = UrlEncode(firstStringTesting) -- Lemur doesn't have UrlEncode ;(
+			end
+			
 			local decoded = stringUtil:DecodeURL(encoded)
 
 			expect(decoded).to.equal(firstStringTesting)
