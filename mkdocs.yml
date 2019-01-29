@@ -1,0 +1,31 @@
+# Site Information
+site_name: 'RDM Documentation'
+
+# Repo information
+repo_name: 'froghopperjacob/RDM'
+repo_url: 'https://github.com/froghopperjacob/RDM'
+
+# MKDocs information
+theme:
+  name: 'material'
+  palette:
+    primary: 'Light Blue'
+    accent: 'Light Blue'
+  feature:
+    tabs: true
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - RDM Modules:
+    - String: rdm-modules/string.md
+    - Promises: rdm-modules/promises.md
+    - Event Handler: rdm-modules/eventhandler.md
+  - Bug Tracker: https://github.com/froghopperjacob/RDM/issues
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true

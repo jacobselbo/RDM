@@ -22,7 +22,11 @@ return {
 
 					local promiseables, resolve, reject = Promiseables:GeneratePromiseables()
 
-					coroutine.resume(coroutine.create(run), resolve, reject)
+					local success, errorMessage = coroutine.resume(coroutine.create(run), resolve, reject)
+
+					if (not success) then
+						reject(errorMessage)
+					end
 
 					return promiseables
 				end

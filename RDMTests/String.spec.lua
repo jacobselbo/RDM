@@ -69,7 +69,7 @@ return function()
 
 		it("should be the same string when URL decoded", function()
 			local encoded
-			local roblox, m = pcall(function()
+			local roblox = pcall(function()
 				return HttpService["UrlEncode"] ~= nil
 			end)
 

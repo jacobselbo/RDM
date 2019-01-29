@@ -84,7 +84,7 @@ return {
 
 				["Split"] = function(self, str, sep)
 					if (type(self) ~= "table") then
-						return error("Use : to call Join instead of .")
+						str, sep = self, str
 					end
 
 					local realSeperator = sep or ":"
@@ -94,21 +94,13 @@ return {
 							type(str) .. "/" .. type(realSeperator) .. " Excepted - string/string")
 					end
 
-					local pattern, fields = string.format(splitFormat, realSeperator), {
-						["Join"] = self["Join"] -- Todo add more functions
-					}
+					local pattern, fields = string.format(splitFormat, realSeperator), { }
 
 					str:gsub(pattern, function(c)
 						fields[#fields + 1] = c
 					end)
 
-					return setmetatable(fields, {
-						__newindex = function()
-							return error("New indexes are locked.")
-						end,
-
-						__metatable = "Locked."
-					})
+					return fields
 				end,
 
 				["Count"] = function(self, str, substring)
@@ -211,10 +203,8 @@ return {
 
 					return 	lowerStr == 'true' or
 							lowerStr == 'on' or
-							lowerStr == 1 or
 							lowerStr == '1' or
-							lowerStr == 'yes' or
-							lowerStr == true
+							lowerStr == 'yes'
 				end
 			} -- todo more stuff
 		)

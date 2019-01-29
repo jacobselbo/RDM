@@ -11,10 +11,15 @@ return {
 				["GeneratePromiseables"] = function(self, want)
 					local gotPromiseables = { }
 					local gotCatches = { }
-					local continuePromise = true
-					local gotAfter = nil
 
-					local promiseables = {
+					local continuePromise = true
+
+					local gotAfter = nil
+					local gotReject = nil
+
+					local promiseables = baseClass:Extend({
+						["Name"] = "Promiseables",
+
 						["after"] = function(promSelf, func)
 							if (type(func) ~= "function") then
 								return RDM:Log("High", true, "Wrong first argument for after",
@@ -24,10 +29,14 @@ return {
 							gotPromiseables["After"] = func
 
 							local function run(resolve, reject)
-								repeat wait() until gotAfter ~= nil or continuePromise == false
+								repeat wait() until gotAfter ~= nil or continuePromise == false or gotReject ~= nil
 
 								if (continuePromise) then
 									resolve(gotAfter)
+								end
+
+								if (gotReject ~= nil) then
+									reject(unpack(gotReject))
 								end
 
 								return true
@@ -49,8 +58,6 @@ return {
 							gotPromiseables["Finally"] = func
 
 							continuePromise = false
-
-							return true
 						end,
 
 						["catch"] = function(promSelf, message, func)
@@ -89,13 +96,13 @@ return {
 
 						["complete"] = function(promSelf)
 							continuePromise = false
-
-							return true
 						end,
-					}
+					})
 
 					local function resolve(...)
-						gotAfter = gotPromiseables["After"](...)
+						if (gotPromiseables["After"]) then
+							gotAfter = gotPromiseables["After"](...)
+						end
 
 						if (gotPromiseables["Finally"]) then
 							gotPromiseables["Finally"](...)
@@ -105,23 +112,27 @@ return {
 					end
 
 					local function reject(...)
-						if (gotPromiseables["Catch"] == nil) then
-							return RDM:Log("High", true, "Unhandled reject for the promise.",
-								name, ".catch()", "nil")
-						end
+						local allTable = { ... }
 
-						if (gotCatches[({ ... })[1]] ~= nil) then
+						gotReject = allTable
+
+						if (gotCatches[allTable[1]] ~= nil) then
 							local send = { }
 
-							for ind, data in pairs({ ... }) do
+							for ind, data in pairs(allTable) do
 								if (ind > 1) then
 									send[ind] = data
 								end
 							end
 
-							gotCatches[({ ... })[1]](unpack(send))
+							gotCatches[allTable[1]](unpack(send))
 						else
-							gotCatches[1](...)
+							if (gotCatches[1]) then
+								gotCatches[1](...)
+							elseif (gotPromiseables["Finally"] == nil) then
+								return RDM:Log("High", true, "Unhandled reject for the promise. : " .. unpack({ ... }),
+									name, ".catch()", "nil")
+							end
 						end
 
 						if (gotPromiseables["Finally"]) then

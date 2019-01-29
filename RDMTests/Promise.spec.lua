@@ -45,6 +45,8 @@ return function()
 
 		it("catch should catch properly", function()
 			Promise:New(function(resolve, reject)
+				wait(1)
+
 				reject("Error")
 			end):catch(function(message)
 				expect(message).to.equal("Error")
@@ -53,6 +55,8 @@ return function()
 
 		it("catch should allow dazy chaining", function()
 			Promise:New(function(resolve, reject)
+				wait(1)
+
 				reject("Error1")
 			end):catch("Error1", function()
 				expect(1).to.be.ok() -- Should be called
@@ -66,15 +70,17 @@ return function()
 				Promise:New(function(resolve, reject)
 					resolve("Sucess1")
 				end):finally(function(message)
-					expect(message == "Sucess1")
+					expect(message).to.equal("Sucess1")
 				end)
 			end)
 
 			it("should allow reject", function()
 				Promise:New(function(resolve, reject)
+					wait(1)
+
 					reject("Error1")
 				end):finally(function(message)
-					expect(message == "Error1")
+					expect(message).to.equal("Error1")
 				end)
 			end)
 		end)

@@ -4,12 +4,17 @@ local function generate(baseClass, RDM, name, event, func)
 	return baseClass:Extend(
 		{
 			["Emit"] = function(self, ...)
+				if (self["Disconnect"] ~= nil) then
+					return RDM:Log("High", true, "Call catch with a : instead of a .",
+						name, ":", ".")
+				end
+
 				for _, func in pairs(events[event]) do
 					func(...)
 				end
 			end,
 
-			["Disconnect"] = function()
+			["Disconnect"] = function(self)
 				if (func) then
 					events[event][func] = nil
 				end
@@ -31,7 +36,7 @@ local function generate(baseClass, RDM, name, event, func)
 
 				events[event][func] = func
 
-				return generate(baseClass, event, func)
+				return generate(baseClass, RDM, name, event, func)
 			end
 		}
 	)
