@@ -1,0 +1,776 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.2.0">
+    
+    
+      
+        <title>Promises - RDM Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.572ca0f0.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.8c900955.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#string-module" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="RDM Documentation" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                RDM Documentation
+              </span>
+              <span class="md-header-nav__topic">
+                Promises
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/froghopperjacob/RDM/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      froghopperjacob/RDM
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." title="Home" class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../string/" title="RDM Modules" class="md-tabs__link md-tabs__link--active">
+          RDM Modules
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="RDM Documentation" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    RDM Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/froghopperjacob/RDM/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      froghopperjacob/RDM
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      RDM Modules
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        RDM Modules
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../string/" title="String" class="md-nav__link">
+      String
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Promises
+      </label>
+    
+    <a href="./" title="Promises" class="md-nav__link md-nav__link--active">
+      Promises
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-classes" title="API Classes" class="md-nav__link">
+    API Classes
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#promise" title="Promise" class="md-nav__link">
+    Promise
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#promisenew" title="Promise.New" class="md-nav__link">
+    Promise.New
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promiseables" title="Promiseables" class="md-nav__link">
+    Promiseables
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#promiseableafter" title="Promiseable.after" class="md-nav__link">
+    Promiseable.after
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promiseablefinally" title="Promiseable.finally" class="md-nav__link">
+    Promiseable.finally
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promiseablecatch" title="Promiseable.catch" class="md-nav__link">
+    Promiseable.catch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promiseablecomplete" title="Promiseable.complete" class="md-nav__link">
+    Promiseable.complete
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" title="Examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../eventhandler/" title="Event Handler" class="md-nav__link">
+      Event Handler
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/froghopperjacob/RDM/issues" title="Bug Tracker" class="md-nav__link">
+      Bug Tracker
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-classes" title="API Classes" class="md-nav__link">
+    API Classes
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#promise" title="Promise" class="md-nav__link">
+    Promise
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#promisenew" title="Promise.New" class="md-nav__link">
+    Promise.New
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promiseables" title="Promiseables" class="md-nav__link">
+    Promiseables
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#promiseableafter" title="Promiseable.after" class="md-nav__link">
+    Promiseable.after
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promiseablefinally" title="Promiseable.finally" class="md-nav__link">
+    Promiseable.finally
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promiseablecatch" title="Promiseable.catch" class="md-nav__link">
+    Promiseable.catch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promiseablecomplete" title="Promiseable.complete" class="md-nav__link">
+    Promiseable.complete
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" title="Examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/froghopperjacob/RDM/edit/master/docs/rdm-modules/promises.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="string-module">String Module<a class="headerlink" href="#string-module" title="Permanent link">&para;</a></h1>
+<h2 id="api-classes">API Classes<a class="headerlink" href="#api-classes" title="Permanent link">&para;</a></h2>
+<h3 id="promise">Promise<a class="headerlink" href="#promise" title="Permanent link">&para;</a></h3>
+<h4 id="promisenew">Promise.New<a class="headerlink" href="#promisenew" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="n">Promise</span><span class="p">.</span><span class="n">New</span><span class="p">(</span><span class="kr">function</span><span class="err">{</span><span class="nf">resolve</span><span class="p">,</span> <span class="n">reject</span><span class="p">})</span> <span class="o">-&gt;</span> <span class="n">Promiseables</span>
+</pre></div>
+
+
+<p>The given function is called with a function <code>resolve</code> and a function <code>reject</code>.
+The function is also called in a <code>coroutine</code> to allow error catching and to not yield the thread.</p>
+<h3 id="promiseables">Promiseables<a class="headerlink" href="#promiseables" title="Permanent link">&para;</a></h3>
+<h4 id="promiseableafter">Promiseable.after<a class="headerlink" href="#promiseableafter" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="n">Promiseable</span><span class="p">.</span><span class="n">after</span><span class="p">(</span><span class="kr">function</span><span class="err">{</span><span class="p">...</span><span class="err">})</span> <span class="err">-&gt;</span> <span class="nf">Promiseables</span>
+</pre></div>
+
+
+<p>When the main function <code>resolve</code> is called the arguments are passed down to the after function. 
+You can return something in the after function for it to be dazy-chained to another after.</p>
+<h4 id="promiseablefinally">Promiseable.finally<a class="headerlink" href="#promiseablefinally" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="n">Promiseable</span><span class="p">.</span><span class="n">finally</span><span class="p">(</span><span class="kr">function</span><span class="err">{</span><span class="p">...</span><span class="err">})</span> <span class="err">-&gt;</span> <span class="nf">Void</span>
+</pre></div>
+
+
+<p>The resolves and rejects are handed down the finally function.</p>
+<h4 id="promiseablecatch">Promiseable.catch<a class="headerlink" href="#promiseablecatch" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="n">Promiseable</span><span class="p">.</span><span class="n">catch</span><span class="p">([</span><span class="n">string</span><span class="p">],</span> <span class="kr">function</span><span class="err">{</span><span class="p">...</span><span class="err">})</span> <span class="err">-&gt;</span> <span class="nf">Limited</span> <span class="n">Promiseables</span>
+</pre></div>
+
+
+<blockquote>
+<p>If there isn't the given <code>string</code> and there isn't another dazy-chained catch with that same string then this function is called.</p>
+</blockquote>
+<p>The first argument, <code>string</code>, is checked against the first rejected argument. A complete and catch is returned from .catch.</p>
+<h4 id="promiseablecomplete">Promiseable.complete<a class="headerlink" href="#promiseablecomplete" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span><span class="n">Promiseable</span><span class="p">.</span><span class="n">complete</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Void</span>
+</pre></div>
+
+
+<p>Tells the promiseable while loop that your done daizy-chaining afters.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are ever using a <code>.after</code> then you have to have a <code>.complete()</code> at the end. 
+This is so that we don't have a constant while thread open and hogging system resources.</p>
+</div>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">RDMF</span> <span class="o">=</span> <span class="n">game</span><span class="p">:</span><span class="n">GetService</span><span class="p">(</span><span class="s2">&quot;ServerScriptService&quot;</span><span class="p">):</span><span class="n">WaitForChild</span><span class="p">(</span><span class="s2">&quot;RDM&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">RDM</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="n">RDMF</span><span class="p">:</span><span class="n">WaitForChild</span><span class="p">(</span><span class="s2">&quot;MainModule&quot;</span><span class="p">))(</span><span class="n">script</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">Players</span> <span class="o">=</span> <span class="n">game</span><span class="p">:</span><span class="n">GetService</span><span class="p">(</span><span class="s2">&quot;Players&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">HttpService</span> <span class="o">=</span> <span class="n">game</span><span class="p">:</span><span class="n">GetService</span><span class="p">(</span><span class="s2">&quot;HttpService&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">Promise</span> <span class="o">=</span> <span class="n">RDM</span><span class="p">:</span><span class="n">Import</span><span class="p">(</span><span class="s2">&quot;Promise&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">baseUrl</span> <span class="o">=</span> <span class="s2">&quot;https://example.com/&quot;</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">getData</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
+    <span class="kr">return</span> <span class="n">Promise</span><span class="p">:</span><span class="n">New</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="n">resolve</span><span class="p">,</span> <span class="n">reject</span><span class="p">)</span>
+        <span class="kd">local</span> <span class="n">response</span> <span class="o">=</span> <span class="n">HttpService</span><span class="p">:</span><span class="n">RequestAsync</span><span class="p">({</span>
+            <span class="p">[</span><span class="s2">&quot;Url&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">string.format</span><span class="p">(</span><span class="n">baseUrl</span> <span class="o">..</span> <span class="s2">&quot;/users/%d&quot;</span><span class="p">,</span> <span class="n">player</span><span class="p">.</span><span class="n">UserId</span><span class="p">),</span>
+            <span class="p">[</span><span class="s2">&quot;Method&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;GET&quot;</span>
+        <span class="p">})</span>
+
+        <span class="kr">if</span> <span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;Success&quot;</span><span class="p">])</span> <span class="kr">then</span>
+            <span class="n">resolve</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;Body&quot;</span><span class="p">])</span>
+        <span class="kr">else</span>
+            <span class="n">reject</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;StatusCode&quot;</span><span class="p">],</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;StatusMessage&quot;</span><span class="p">])</span>
+        <span class="kr">end</span>
+    <span class="kr">end</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="n">Players</span><span class="p">.</span><span class="n">PlayerAdded</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
+    <span class="n">getData</span><span class="p">(</span><span class="n">player</span><span class="p">):</span><span class="n">after</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="kr">return</span> <span class="n">HttpService</span><span class="p">:</span><span class="n">JSONDecode</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+    <span class="kr">end</span><span class="p">):</span><span class="n">after</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="n">playerData</span><span class="p">)</span>
+        <span class="kr">if</span> <span class="p">(</span><span class="n">playerData</span><span class="p">[</span><span class="s2">&quot;Banned&quot;</span><span class="p">])</span> <span class="kr">then</span>
+            <span class="n">player</span><span class="p">:</span><span class="n">Kick</span><span class="p">(</span><span class="n">playerData</span><span class="p">[</span><span class="s2">&quot;BanMessage&quot;</span><span class="p">])</span>
+        <span class="kr">end</span>
+    <span class="kr">end</span><span class="p">):</span><span class="n">catch</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="n">statusCode</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        <span class="nb">error</span><span class="p">(</span><span class="s2">&quot;Unexpected error: &quot;</span> <span class="o">..</span> <span class="n">statusCode</span> <span class="o">..</span> <span class="s2">&quot; | &quot;</span> <span class="o">..</span> <span class="n">message</span><span class="p">)</span>
+    <span class="kr">end</span><span class="p">):</span><span class="n">complete</span><span class="p">()</span>
+<span class="kr">end</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This doesn't work as <code>https://example.com/</code> doesn't host roblox users, but you could make this work.</p>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../string/" title="String" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                String
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../eventhandler/" title="Event Handler" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Event Handler
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.b41f3d20.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
