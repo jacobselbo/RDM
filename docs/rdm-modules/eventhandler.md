@@ -6,7 +6,7 @@
 
 #### EventHandler.Connect
 
-```lua
+```
 EventHandler.Connect(eventName, function) -> Event
 ```
 
@@ -14,7 +14,7 @@ This creates a new event and connects a function to that event.
 
 #### EventHandler:Emit
 
-```lua
+```
 EventHandler:Emit(eventName, ...) -> Void
 ```
 
@@ -26,7 +26,7 @@ This calls every function associated with that eventName with the given arguemen
 
 #### EventHandler.Register
 
-```lua
+```
 EventHandler.Register(eventName) -> Event
 ```
 
@@ -36,7 +36,7 @@ This creates a new standalone event. This is useful if you want to return a even
 
 #### Event:Emit
 
-```lua
+```
 Event:Emit(...) -> Void
 ```
 
@@ -48,7 +48,7 @@ Calls every function associated with the parent's Event.
 
 #### Event.Disconnect
 
-```lua
+```
 Event.Disconnect() -> Void
 ```
 
@@ -56,7 +56,7 @@ Completly kills the entire event and all child functions.
 
 #### Event.Connect
 
-```lua
+```
 Event.Connect(function{...}) -> Event
 ```
 

@@ -50,7 +50,7 @@ return {
 						yieldString = "Yielding"
 					end
 
-					if (not name) then
+					if (not name or name == nil) then
 						name = "RDM"
 					end
 

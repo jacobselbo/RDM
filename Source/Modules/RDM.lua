@@ -35,7 +35,7 @@ return {
 
 				["TryImport"] = function(self, module, version)
 					if (type(self) ~= "table") then
-						return LogHandler:Log("High", true, "Use : instead of .",
+						return LogHandler:Log("High", true, "Use : instead of .", nil,
 							":", ".")
 					end
 
@@ -80,7 +80,7 @@ return {
 					local projectInstance
 
 					if (fenv == nil) then
-						return LogHandler:Log("High", true, "No Enviroment given",
+						return LogHandler:Log("High", true, "No Enviroment given", nil,
 							"getfenv(1)", fenv)
 					end
 
@@ -89,12 +89,12 @@ return {
 					elseif (fenv.print == nil) then
 						projectInstance = fenv.script
 					else
-						return LogHandler:Log("High", true, "Invalid Enviorment given",
+						return LogHandler:Log("High", true, "Invalid Enviorment given", nil,
 							"getfenv(1)", fenv)
 					end
 
 					if (projectInstance.ClassName ~= "ModuleScript" and projectInstance.ClassName ~= "Script") then
-						return LogHandler:Log("High", true, "Invalid script given",
+						return LogHandler:Log("High", true, "Invalid script given", nil,
 							"Script", projectInstance.ClassName)
 					end
 
@@ -102,8 +102,8 @@ return {
 
 					if (project:FindFirstChild("RDMModules") == nil or
 						project:FindFirstChild("Package") == nil) then
-						return LogHandler:Log("High", true, "Invalid project area given.",
-							"Project wiht RDMModules and Package", project)
+						return LogHandler:Log("High", true, "Invalid project area given.", nil,
+							"Project with RDMModules and Package", project.Name)
 					end
 
 					SettingsHandler.Set("RDMModulesFolder", project:FindFirstChild("RDMModules"))

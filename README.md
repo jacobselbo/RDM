@@ -1,16 +1,19 @@
 <h1 align="center">Roblox Dependency Manager</h1>
 <div align="center">
 	<a href="https://discord.gg/mrVC9dr">
-		<img src="https://discordapp.com/api/guilds/526532172501221396/widget.png" alt="Discord" />
+		<img src="https://img.shields.io/discord/526532172501221396.svg?colorB=blue&label=discord&logo=discord&style=flat-square" alt="Discord" />
 	</a>
 	<a href="https://github.com/froghopperjacob/RDM/tree/master/LICENSE">
-		<img src="https://img.shields.io/badge/License-Apache%202.0-lightgrey.svg" alt="Lisence" />
+		<img src="https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg?style=flat-square" alt="Lisence" />
 	</a>
 	<a href="https://travis-ci.org/froghopperjacob/RDM">
-		<img src="https://travis-ci.org/froghopperjacob/RDM.svg?branch=master" alt="Travis" />
+		<img src="https://img.shields.io/travis/froghopperjacob/RDM/master.svg?style=flat-square" alt="Travis" />
 	</a>
 	<a href="https://coveralls.io/github/froghopperjacob/RDM?branch=master">
-		<img src="https://coveralls.io/repos/github/froghopperjacob/RDM/badge.svg?branch=master" alt="Coverage Status" />
+		<img src="https://img.shields.io/coveralls/github/froghopperjacob/RDM.svg?style=flat-square" alt="Coveralls" />
+	</a>
+	<a href="https://froghopperjacob.github.io/RDM/">
+		<img src="https://img.shields.io/badge/docs-website-lightblue.svg?style=flat-square" alt="Documentation" />
 	</a>
 </div>
 
@@ -23,7 +26,7 @@
 ## Index
 
 1. [Examples](#examples)
-2. [Documentation](#documentation)
+2. [Documentation](https://froghopperjacob.github.io/RDM/)
 3. [Download](#download)
 4. [Installing Packages](#installing-packages)
 5. [Creating Packages](#creating-packages)
@@ -58,8 +61,6 @@ end)
 ```
 
 ## Download
-
-
 
 **Download through Packages**
 
@@ -98,8 +99,6 @@ There are two methods of installing packages. The most recommended way of instal
 There is also two methods of installing packages locally.
 
 *Installing through script*
-
-
 
 
 # Alot of this is in a Todo phase so wait a bit

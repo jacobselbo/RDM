@@ -4,8 +4,8 @@ local function generate(baseClass, RDM, name, event, func)
 	return baseClass:Extend(
 		{
 			["Emit"] = function(self, ...)
-				if (self["Disconnect"] ~= nil) then
-					return RDM:Log("High", true, "Call catch with a : instead of a .",
+				if (self["Disconnect"] == nil) then
+					return RDM:Log("High", true, "Call Emit with a : instead of a .",
 						name, ":", ".")
 				end
 
@@ -78,7 +78,7 @@ return {
 
 				["Emit"]  = function(self, eventName, ...)
 					if (type(self) ~= "table") then
-						return RDM:Log("High", true, "Call catch with a : instead of a .",
+						return RDM:Log("High", true, "Call emit with a : instead of a .",
 							name, ":", ".")
 					end
 

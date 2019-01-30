@@ -6,7 +6,7 @@
 
 #### Promise.New
 
-```lua
+```
 Promise.New(function{resolve, reject}) -> Promiseables
 ```
 
@@ -17,7 +17,7 @@ The function is also called in a ``coroutine`` to allow error catching and to no
 
 #### Promiseable.after
 
-```lua
+```
 Promiseable.after(function{...}) -> Promiseables
 ```
 
@@ -26,7 +26,7 @@ You can return something in the after function for it to be dazy-chained to anot
 
 #### Promiseable.finally
 
-```lua
+```
 Promiseable.finally(function{...}) -> Void
 ```
 
@@ -34,7 +34,7 @@ The resolves and rejects are handed down the finally function.
 
 #### Promiseable.catch
 
-```lua
+```
 Promiseable.catch([string], function{...}) -> Limited Promiseables
 ```
 
@@ -44,7 +44,7 @@ The first argument, ``string``, is checked against the first rejected argument. 
 
 #### Promiseable.complete
 
-```lua
+```
 Promiseable.complete() -> Void
 ```
 
