@@ -144,16 +144,16 @@ Run in the command bar. If you want RDM to not be placed in `ServerScriptService
 
 *Normally*
 ```lua
-local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/install.lua"))()
+local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/master/install.lua"))()
 ```
 *Edited destination*
 ```lua
-local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/install.lua"))(game:GetService("ServerStorage"))
+local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/master/install.lua"))(game:GetService("ServerStorage"))
 ```
 
 *All of RDM*
 ```lua
-local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/install.lua"))(null, true)
+local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/master/install.lua"))(null, true)
 ```
 
 ## Installing Packages
