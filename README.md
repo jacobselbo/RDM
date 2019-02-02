@@ -19,6 +19,7 @@
 
 <div align="center">
 	RDM is a small and light weight dependency manager that is setup like <a href="https://github.com/npm/cli">NPM</a>.
+	<b>⚠️ RDM should only be used for experimental projects until v1.0.0 ⚠️</b>
 </div>
 
 <div>&nbsp;</div>
@@ -120,6 +121,7 @@ EventHandler:Connect("Instance", function(instanceClass, properties)
 	for key, value in pairs(properties) do
 		newClass[key] = value
 	end
+end)
 ```
 
 ## Download
@@ -134,22 +136,21 @@ This is probably the best method of downloading since you will have a constantly
 4. Add `RDM - Roblox Dependency Manager` to your wanted location
 
 **Download through Github**
-*Note this is note been made yet*
 
 Run in the command bar. If you want RDM to not be placed in `ServerScriptService` then where it calls the loadstring put the destination you want. If you want all of RDM then put true for the second argument.
 
 *Normally*
 ```lua
-local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/Install.lua"))()
+local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/install.lua"))()
 ```
 *Edited destination*
 ```lua
-local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/Install.lua"))(game:GetService("ServerStorage"))
+local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/install.lua"))(game:GetService("ServerStorage"))
 ```
 
 *All of RDM*
 ```lua
-local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/Install.lua"))(null, true)
+local h = game:GetService("HttpService"); h.HttpEnabled = true; loadstring(h:GetAsync("https://raw.githubusercontent.com/froghopperjacob/RDM/tree/master/install.lua"))(null, true)
 ```
 
 ## Installing Packages
@@ -161,6 +162,3 @@ There are two methods of installing packages. The most recommended way of instal
 There is also two methods of installing packages locally.
 
 *Installing through script*
-
-
-# Alot of this is in a Todo phase so wait a bit
