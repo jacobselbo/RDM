@@ -19,6 +19,9 @@
 
 <div align="center">
 	RDM is a small and light weight dependency manager that is setup like <a href="https://github.com/npm/cli">NPM</a>.
+</div>
+
+<div align="center">
 	<b>⚠️ RDM should only be used for experimental projects until v1.0.0 ⚠️</b>
 </div>
 
