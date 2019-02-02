@@ -1,0 +1,15 @@
+{
+    "name": "RDM",
+    "tree": {
+        "$className": "DataModel",
+        "ServerScriptService": {
+            "$className": "ServerScriptService",
+            "RDM": {
+                "$path": "RDM/Source"
+            },
+            "AllRDM": {
+                "$path": "RDM"
+            }
+        }
+    }
+}
