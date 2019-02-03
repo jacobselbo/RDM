@@ -24,14 +24,21 @@ end
 -- Services
 local HttpService = game:GetService("HttpService")
 
+-- Constants
+local Url = "https://github.com/froghopperjacob/RDM/tree/master/"
+
 -- Module
 local GitHub = {}
 
 local DataSources = {}
 
 -- Given data
-local Destination = game:GetService("ServerScriptService") or ({ ... })[1]
+local Destination = game:GetService("ServerScriptService")
 local AllRDM = false or ({ ... })[2]
+
+if (({ ... })[1] ~= nil) then
+	Destination =  ({ ... })[1]
+end
 
 -- Helper Functions
 local ScriptTypes = {
@@ -274,9 +281,16 @@ function GitHub:Install(Link, Parent, RoutineList)
 end
 
 if (AllRDM) then
-	GitHub:Install("https://github.com/froghopperjacob/RDM/tree/master", Destination).Name = "AllRDM"
+	local AllRDM = Instance.new("Folder", Destination)
+	AllRDM.Name = "AllRDM"
+
+	GitHub:Install(Url .. "Source", AllRDM)
+	GitHub:Install(Url .. "Examples", AllRDM)
+	Github:Install(Url .. "Modules", AllRDM)
+	Github:Install(Url .. "RDMTests", AllRDM)
+	Github:Install(Url .. "spec.lua", AllRDM)
 else
-	GitHub:Install("https://github.com/froghopperjacob/RDM/tree/master/Source", Destination).Name = "RDM"
+	GitHub:Install(Url .. "Source", Destination).Name = "RDM"
 end
 
 print("RDM installed.")
