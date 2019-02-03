@@ -286,9 +286,9 @@ if (AllRDM) then
 
 	GitHub:Install(Url .. "Source", AllRDM)
 	GitHub:Install(Url .. "Examples", AllRDM)
-	Github:Install(Url .. "Modules", AllRDM)
-	Github:Install(Url .. "RDMTests", AllRDM)
-	Github:Install(Url .. "spec.lua", AllRDM)
+	GitHub:Install(Url .. "Modules", AllRDM)
+	GitHub:Install(Url .. "RDMTests", AllRDM)
+	GitHub:Install(Url .. "spec.lua", AllRDM)
 else
 	GitHub:Install(Url .. "Source", Destination).Name = "RDM"
 end
