@@ -30,8 +30,8 @@ local GitHub = {}
 local DataSources = {}
 
 -- Given data
-local Destination = game:GetService("ServerScriptService") or { ... }[1]
-local AllRDM = false or { ... }[1]
+local Destination = game:GetService("ServerScriptService") or ({ ... })[1]
+local AllRDM = false or ({ ... })[2]
 
 -- Helper Functions
 local ScriptTypes = {
@@ -40,6 +40,8 @@ local ScriptTypes = {
 	["module"] = "ModuleScript";
 	["mod"] = "ModuleScript";
 	["loc"] = "LocalScript";
+	["server"] = "Script";
+	["client"] = "LocalScript";
 }
 
 local function UrlDecode(Character)
@@ -272,7 +274,7 @@ function GitHub:Install(Link, Parent, RoutineList)
 end
 
 if (AllRDM) then
-	GitHub:Install("https://github.com/froghopperjacob/RDM/tree/master", Destination).Name = "RDM"
+	GitHub:Install("https://github.com/froghopperjacob/RDM/tree/master", Destination).Name = "AllRDM"
 else
 	GitHub:Install("https://github.com/froghopperjacob/RDM/tree/master/Source", Destination).Name = "RDM"
 end
